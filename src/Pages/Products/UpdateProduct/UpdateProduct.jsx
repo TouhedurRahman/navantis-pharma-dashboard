@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 
-const AddProducts = () => {
+const UpdateProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
-        const newProduct = {
+        const updatedProduct = {
             name: data.name,
             subtitle: data.subtitle,
             forSearch: data.name + " " + data.subtitle,
@@ -15,22 +15,22 @@ const AddProducts = () => {
             apply: data.apply,
             description: data.description,
             moComLink: data.motherCompanyLink,
-            addedBy: data.addedby,
-            addedEmail: data.addedemail,
+            updatedBy: data.updatedby,
+            updatedEmail: data.updatedemail,
             imageURL: data.imageFile
         }
-        console.log(newProduct);
+        console.log(updatedProduct);
     }
 
     return (
         <div>
             <PageTitle
                 from={"Products"}
-                to={"Add new product"}
+                to={"Update product"}
             />
 
             <div className="bg-white">
-                <h1 className="px-6 py-3 font-bold">Add new product</h1>
+                <h1 className="px-6 py-3 font-bold">Update product</h1>
                 <hr className='text-center border border-gray-500 mb-5' />
                 <form onSubmit={handleSubmit(onSubmit)} className="p-6 pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
@@ -139,7 +139,7 @@ const AddProducts = () => {
                         />
                     </div>
 
-                    <h1 className="mt-10 text-sm">Product added by</h1>
+                    <h1 className="mt-10 text-sm">Product updated by</h1>
                     <hr className='w-full border border-gray-500 mb-3' />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
@@ -148,18 +148,18 @@ const AddProducts = () => {
                                 Name <span className="text-red-500">*</span>
                             </label>
                             <input
-                                {...register("addedby", { required: "Added by is required" })}
-                                placeholder="Enter name of person adding"
+                                {...register("updatedby", { required: "Added by is required" })}
+                                placeholder="Enter name of person updating"
                                 className="border-gray-500 bg-white border p-2 text-sm"
                             />
-                            {errors.addedby && <p className="text-red-500 text-sm">{errors.addedby.message}</p>}
+                            {errors.updatedby && <p className="text-red-500 text-sm">{errors.updatedby.message}</p>}
                         </div>
                         <div className="flex flex-col">
                             <label className="text-[#6E719A] mb-1 text-sm">
                                 Email <span className="text-red-500">*</span>
                             </label>
                             <input
-                                {...register("addedemail", {
+                                {...register("updatedemail", {
                                     required: "Email is required",
                                     pattern: {
                                         value: /^\S+@\S+$/i,
@@ -179,4 +179,4 @@ const AddProducts = () => {
     );
 };
 
-export default AddProducts;
+export default UpdateProduct;
