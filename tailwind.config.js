@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        'playwrite': ["Playwrite MX", "cursive"]
+        'playwrite': ["Playwrite MX", "cursive"],
+        'nunito': ["Nunito", "sans-serif"]
       }
     },
   },
