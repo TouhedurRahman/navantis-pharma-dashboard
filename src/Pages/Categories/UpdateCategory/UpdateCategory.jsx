@@ -1,15 +1,15 @@
 import { useForm } from "react-hook-form";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 
-const AddCategory = () => {
+const UpdateCategory = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
         const newCategory = {
             name: data.name,
             category: data.category,
-            addedBy: data.addedby,
-            addedEmail: data.addedemail,
+            updatedby: data.updatedby,
+            updatedEmail: data.updatedemail,
             imageURL: data.imageFile
         }
         console.log(newCategory);
@@ -19,11 +19,11 @@ const AddCategory = () => {
         <div>
             <PageTitle
                 from={"Categories"}
-                to={"Add new category"}
+                to={"Update category"}
             />
 
             <div className="bg-white">
-                <h1 className="px-6 py-3 font-bold">Add new category</h1>
+                <h1 className="px-6 py-3 font-bold">Update category</h1>
                 <hr className='text-center border border-gray-500 mb-5' />
                 <form onSubmit={handleSubmit(onSubmit)} className="p-6 pt-0">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
@@ -62,7 +62,7 @@ const AddCategory = () => {
                         {errors.imageFile && <p className="text-red-500 text-sm">{errors.imageFile.message}</p>}
                     </div>
 
-                    <h1 className="mt-10 text-sm">Category added by</h1>
+                    <h1 className="mt-10 text-sm">Category updated by</h1>
                     <hr className='w-full border border-gray-500 mb-3' />
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
@@ -71,18 +71,18 @@ const AddCategory = () => {
                                 Name <span className="text-red-500">*</span>
                             </label>
                             <input
-                                {...register("addedby", { required: "Added by is required" })}
+                                {...register("updatedby", { required: "Updated by is required" })}
                                 placeholder="Enter name of person adding"
                                 className="border-gray-500 bg-white border p-2 text-sm"
                             />
-                            {errors.addedby && <p className="text-red-500 text-sm">{errors.addedby.message}</p>}
+                            {errors.updatedby && <p className="text-red-500 text-sm">{errors.updatedby.message}</p>}
                         </div>
                         <div className="flex flex-col">
                             <label className="text-[#6E719A] mb-1 text-sm">
                                 Email <span className="text-red-500">*</span>
                             </label>
                             <input
-                                {...register("addedemail", {
+                                {...register("updatedemail", {
                                     required: "Email is required",
                                     pattern: {
                                         value: /^\S+@\S+$/i,
@@ -92,7 +92,7 @@ const AddCategory = () => {
                                 placeholder="Enter email"
                                 className="border-gray-500 bg-white border p-2 text-sm"
                             />
-                            {errors.addedemail && <p className="text-red-500 text-sm">{errors.addedemail.message}</p>}
+                            {errors.updatedemail && <p className="text-red-500 text-sm">{errors.updatedemail.message}</p>}
                         </div>
                     </div>
                     <button type="submit" className="bg-blue-500 text-white mt-5 p-2 rounded text-sm">Submit</button>
@@ -102,4 +102,4 @@ const AddCategory = () => {
     );
 };
 
-export default AddCategory;
+export default UpdateCategory;

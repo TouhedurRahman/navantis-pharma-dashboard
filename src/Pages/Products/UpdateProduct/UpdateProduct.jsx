@@ -169,7 +169,7 @@ const UpdateProduct = () => {
                                 placeholder="Enter email"
                                 className="border-gray-500 bg-white border p-2 text-sm"
                             />
-                            {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
+                            {errors.updatedemail && <p className="text-red-500 text-sm">{errors.updatedemail.message}</p>}
                         </div>
                     </div>
                     <button type="submit" className="bg-blue-500 text-white mt-5 p-2 rounded text-sm">Submit</button>
