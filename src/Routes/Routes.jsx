@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home";
 import ProductsList from "../Pages/Products/ProductsList/ProductsList";
 import AddProducts from "../Pages/Products/AddProducts/AddProducts";
 import UpdateProduct from "../Pages/Products/UpdateProduct/UpdateProduct";
+import AddCategory from "../Pages/Categories/AddCategory/AddCategory";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: '/update-product',
                 element: <UpdateProduct />
+            },
+            {
+                path: '/add-category',
+                element: <AddCategory />
             }
         ]
     },
