@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleRight, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
 import { LuLogOut } from "react-icons/lu";
-import { MdDashboard } from "react-icons/md";
+import { MdDashboard, MdOutlineWorkHistory } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 import { FaLayerGroup, FaListUl } from "react-icons/fa";
 import { FiHelpCircle } from "react-icons/fi";
@@ -96,7 +96,7 @@ const Navbar = () => {
                                             <Link to='/add-product' className="w-full text-left px-4 text-white flex">
                                                 <div className='flex justify-start items-center cursor:pointer'>
                                                     <IoIosAddCircle className='me-2' />
-                                                    <span>Add New</span>
+                                                    <span>Add new</span>
                                                 </div>
                                             </Link>
                                         </>
@@ -112,7 +112,7 @@ const Navbar = () => {
                                             <Link to='/add-category' className="w-full text-left px-4 text-white flex">
                                                 <div className='flex justify-start items-center cursor:pointer'>
                                                     <IoIosAddCircle className='me-2' />
-                                                    <span>Add New</span>
+                                                    <span>Add new</span>
                                                 </div>
                                             </Link>
                                         </>
@@ -126,12 +126,38 @@ const Navbar = () => {
                                         </Link>
                                     )}
                                     {menu === 'career' && (
-                                        <Link to='/career-applications' className="w-full text-left px-4 text-white flex">
-                                            <div className='flex justify-start items-center cursor:pointer'>
-                                                <FaListUl className='me-2' />
-                                                <span>Applications</span>
-                                            </div>
-                                        </Link>
+                                        <>
+                                            <Link
+                                                to='/career-list'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <FaListUl className='me-2' />
+                                                    <span>List</span>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                to='/add-job'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <IoIosAddCircle className='me-2' />
+                                                    <span>Add new</span>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                to='/career-applications'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <MdOutlineWorkHistory className='me-2' />
+                                                    <span>Applications</span>
+                                                </div>
+                                            </Link>
+                                        </>
                                     )}
                                 </div>
                             )}
@@ -193,7 +219,7 @@ const Navbar = () => {
                                             >
                                                 <div className='flex justify-start items-center cursor:pointer'>
                                                     <IoIosAddCircle className='me-2' />
-                                                    <span>Add New</span>
+                                                    <span>Add new</span>
                                                 </div>
                                             </Link>
                                         </>
@@ -217,7 +243,7 @@ const Navbar = () => {
                                             >
                                                 <div className='flex justify-start items-center cursor:pointer'>
                                                     <IoIosAddCircle className='me-2' />
-                                                    <span>Add New</span>
+                                                    <span>Add new</span>
                                                 </div>
                                             </Link>
                                         </>
@@ -235,16 +261,38 @@ const Navbar = () => {
                                         </Link>
                                     )}
                                     {menu === 'career' && (
-                                        <Link
-                                            to='/career-applications'
-                                            className="w-full text-left px-4 text-white flex"
-                                            onClick={() => setMobileMenuOpen(false)}
-                                        >
-                                            <div className='flex justify-start items-center cursor:pointer'>
-                                                <FaListUl className='me-2' />
-                                                <span>Applications</span>
-                                            </div>
-                                        </Link>
+                                        <>
+                                            <Link
+                                                to='/career-list'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <FaListUl className='me-2' />
+                                                    <span>List</span>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                to='/add-job'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <IoIosAddCircle className='me-2' />
+                                                    <span>Add new</span>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                to='/career-applications'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <MdOutlineWorkHistory className='me-2' />
+                                                    <span>Applications</span>
+                                                </div>
+                                            </Link>
+                                        </>
                                     )}
                                 </div>
                             )}

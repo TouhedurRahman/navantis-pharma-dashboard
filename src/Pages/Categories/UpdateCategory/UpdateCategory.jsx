@@ -52,7 +52,7 @@ const UpdateCategory = () => {
                     </div>
                     <div className="flex flex-col mb-2">
                         <label className="text-[#6E719A] mb-1 text-sm">
-                            Image Upload <span className="text-red-500">*</span>
+                            Image upload <span className="text-red-500">*</span>
                         </label>
                         <input
                             type="file"
