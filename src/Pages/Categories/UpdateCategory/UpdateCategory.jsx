@@ -72,7 +72,7 @@ const UpdateCategory = () => {
                             </label>
                             <input
                                 {...register("updatedby", { required: "Updated by is required" })}
-                                placeholder="Enter name of person adding"
+                                placeholder="Enter name of person updating"
                                 className="border-gray-500 bg-white border p-2 text-sm"
                             />
                             {errors.updatedby && <p className="text-red-500 text-sm">{errors.updatedby.message}</p>}
