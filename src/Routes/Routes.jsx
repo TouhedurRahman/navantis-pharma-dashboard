@@ -8,6 +8,7 @@ import AddProducts from "../Pages/Products/AddProducts/AddProducts";
 import UpdateProduct from "../Pages/Products/UpdateProduct/UpdateProduct";
 import AddCategory from "../Pages/Categories/AddCategory/AddCategory";
 import UpdateCategory from "../Pages/Categories/UpdateCategory/UpdateCategory";
+import AddJob from "../Pages/Careers/AddJob/AddJob";
 
 const router = createBrowserRouter([
     {
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
             {
                 path: '/update-category',
                 element: <UpdateCategory />
+            },
+            {
+                path: '/add-job',
+                element: <AddJob />
             }
         ]
     },
