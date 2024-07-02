@@ -17,7 +17,7 @@ const ProductsCard = ({ product }) => {
             <td>
                 <div>
                     <div className="font-bold">{product.name}</div>
-                    <div className="text-sm opacity-50">{product.subtitle}</div>
+                    <div className="text-sm opacity-80">{product.subtitle}</div>
                 </div>
             </td>
             <td>
