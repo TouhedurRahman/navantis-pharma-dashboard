@@ -51,8 +51,8 @@ const ProductsList = () => {
                     <hr className='text-center border border-gray-500 mb-5' />
                 </div>
                 <div className="px-6">
-                    <div className="mb-5 flex justify-between items-center">
-                        <div>
+                    <div className="mb-5 flex flex-col-reverse md:flex-row justify-center md:justify-between items-center">
+                        <div className="mt-5 md:mt-0">
                             <label htmlFor="productsPerPage">Show</label>
                             <select
                                 id="productsPerPage"
@@ -107,8 +107,9 @@ const ProductsList = () => {
                             </tbody>
                         </table>
                     </div>
+
                     {/* Pagination */}
-                    <div className="flex justify-end items-center mb-10">
+                    <div className="flex justify-center lg:justify-end items-center mb-10">
                         <div
                             className={`mx-1 px-3 py-1 rounded-lg flex justify-center items-center ${currentPage === 1 ? 'cursor-not-allowed' : ''}`}
                             onClick={() => changePage(currentPage - 1)}

@@ -181,7 +181,7 @@ const Navbar = () => {
                 </div>
 
                 {/* for mobile screen */}
-                <div className={`md:hidden ${isMobileMenuOpen ? 'block w-1/2 h-full absolute mt-[80px]' : 'hidden'} bg-[#1F2937] p-4 text-white`}>
+                <div className={`md:hidden ${isMobileMenuOpen ? 'block w-1/2 h-full absolute mt-[80px] z-10' : 'hidden'} bg-[#1F2937] p-4 text-white`}>
                     {['products', 'categories', 'queries', 'career'].map((menu, index) => (
                         <div className="relative inline-block w-full" key={index}>
                             <div onClick={() => toggleDropdown(menu)} className={`flex items-center cursor-pointer ${isSidebarOpen ? 'justify-between' : 'justify-center'}`}>
