@@ -10,6 +10,7 @@ import AddCategory from "../Pages/Categories/AddCategory/AddCategory";
 import UpdateCategory from "../Pages/Categories/UpdateCategory/UpdateCategory";
 import AddJob from "../Pages/Careers/AddJob/AddJob";
 import UpdateJob from "../Pages/Careers/UpdateJob/UpdateJob";
+import CategoriesList from "../Pages/Categories/CategoriesList/CategoriesList";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
             {
                 path: '/update-product',
                 element: <UpdateProduct />
+            },
+            {
+                path: '/categories-list',
+                element: <CategoriesList />
             },
             {
                 path: '/add-category',

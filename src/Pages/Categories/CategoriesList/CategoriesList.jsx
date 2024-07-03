@@ -1,27 +1,27 @@
 import { useState } from "react";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
-import useProducts from "../../../Hooks/useProducts";
-import ProductsCard from "../ProductsCard/ProductsCard";
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs';
 import { ImSearch } from 'react-icons/im';
+import useCategories from "../../../Hooks/useCategories";
+import CategoryCard from "../CategoryCard/CategoryCard";
 
-const ProductsList = () => {
-    const [products] = useProducts();
+const CategoriesList = () => {
+    const [categories] = useCategories();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
-    const [productsPerPage, setProductsPerPage] = useState(5);
+    const [categoriesPerPage, setCategoriesPerPage] = useState(5);
 
-    const filteredProducts = products.filter(product =>
-        product.forSearch.toLowerCase().includes(searchTerm.toLowerCase())
+    const filteredCategories = categories.filter(category =>
+        category.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    const totalPages = Math.ceil(filteredCategories.length / categoriesPerPage);
 
-    const startIndex = (currentPage - 1) * productsPerPage;
-    const endIndex = Math.min(startIndex + productsPerPage, filteredProducts.length);
+    const startIndex = (currentPage - 1) * categoriesPerPage;
+    const endIndex = Math.min(startIndex + categoriesPerPage, filteredCategories.length);
 
-    const currentProducts = filteredProducts.slice(startIndex, endIndex);
+    const currentCategories = filteredCategories.slice(startIndex, endIndex);
 
     const changePage = (page) => {
         setCurrentPage(page);
@@ -32,8 +32,8 @@ const ProductsList = () => {
         setCurrentPage(1);
     };
 
-    const handleProductsPerPageChange = (e) => {
-        setProductsPerPage(Number(e.target.value));
+    const handleCategoriesPerPageChange = (e) => {
+        setCategoriesPerPage(Number(e.target.value));
         setCurrentPage(1);
     };
 
@@ -42,22 +42,22 @@ const ProductsList = () => {
             <div>
                 <PageTitle
                     from={"Products"}
-                    to={"Products List"}
+                    to={"Categories List"}
                 />
             </div>
             <div className="bg-white pb-1">
                 <div>
-                    <h1 className="px-6 py-3 font-bold">All Products List</h1>
+                    <h1 className="px-6 py-3 font-bold">All categories List</h1>
                     <hr className='text-center border border-gray-500 mb-5' />
                 </div>
                 <div className="px-6">
                     <div className="mb-5 flex flex-col-reverse md:flex-row justify-center md:justify-between items-center">
                         <div className="mt-5 md:mt-0">
-                            <label htmlFor="productsPerPage">Show</label>
+                            <label htmlFor="categoriesPerPage">Show</label>
                             <select
-                                id="productsPerPage"
-                                value={productsPerPage}
-                                onChange={handleProductsPerPageChange}
+                                id="categoriesPerPage"
+                                value={categoriesPerPage}
+                                onChange={handleCategoriesPerPageChange}
                                 className="border border-gray-500 rounded p-1 pointer-cursor mx-2"
                             >
                                 <option value={5}>5</option>
@@ -66,7 +66,7 @@ const ProductsList = () => {
                                 <option value={20}>20</option>
                                 <option value={50}>50</option>
                             </select>
-                            <label htmlFor="productsPerPage">products per page</label>
+                            <label htmlFor="categoriesPerPage">categories per page</label>
                         </div>
                         <div>
                             {/* Search Input */}
@@ -76,7 +76,7 @@ const ProductsList = () => {
                                 </div>
                                 <input
                                     type="text"
-                                    placeholder="Search products"
+                                    placeholder="Search categories"
                                     value={searchTerm}
                                     onChange={handleSearch}
                                     className="border border-gray-500 border-l-0 px-3 py-1 rounded-r-full focus:outline-none"
@@ -90,17 +90,16 @@ const ProductsList = () => {
                             <thead>
                                 <tr>
                                     <th className="text-center">Image</th>
-                                    <th>Name</th>
-                                    <th>Description</th>
+                                    <th className="text-center">Name</th>
                                     <th className="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {
-                                    currentProducts.map(product => (
-                                        <ProductsCard
-                                            key={product._id}
-                                            product={product}
+                                    currentCategories.map(category => (
+                                        <CategoryCard
+                                            key={category._id}
+                                            category={category}
                                         />
                                     ))
                                 }
@@ -149,4 +148,4 @@ const ProductsList = () => {
     );
 };
 
-export default ProductsList;
+export default CategoriesList;
