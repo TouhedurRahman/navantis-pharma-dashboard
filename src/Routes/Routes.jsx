@@ -11,6 +11,7 @@ import UpdateCategory from "../Pages/Categories/UpdateCategory/UpdateCategory";
 import AddJob from "../Pages/Careers/AddJob/AddJob";
 import UpdateJob from "../Pages/Careers/UpdateJob/UpdateJob";
 import CategoriesList from "../Pages/Categories/CategoriesList/CategoriesList";
+import SingleProduct from "../Pages/Products/SingleProduct/SingleProduct";
 
 const router = createBrowserRouter([
     {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: '/products-list',
                 element: <ProductsList />
+            },
+            {
+                path: '/product/:id',
+                element: <SingleProduct />
             },
             {
                 path: '/add-product',

@@ -1,4 +1,5 @@
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ProductsCard = ({ product }) => {
     return (
@@ -27,9 +28,11 @@ const ProductsCard = ({ product }) => {
             </td>
             <th>
                 <div className="flex justify-center items-center space-x-4 text-md">
-                    <button className="p-2 rounded-[5px] hover:bg-green-100 focus:outline-none">
-                        <FaEye className="text-green-500" />
-                    </button>
+                    <Link to={`/product/${product._id}`}>
+                        <button className="p-2 rounded-[5px] hover:bg-green-100 focus:outline-none">
+                            <FaEye className="text-green-500" />
+                        </button>
+                    </Link>
                     <button className="p-2 rounded-[5px] hover:bg-orange-100 focus:outline-none">
                         <FaEdit className="text-orange-500" />
                     </button>
