@@ -12,6 +12,7 @@ import AddJob from "../Pages/Careers/AddJob/AddJob";
 import UpdateJob from "../Pages/Careers/UpdateJob/UpdateJob";
 import CategoriesList from "../Pages/Categories/CategoriesList/CategoriesList";
 import SingleProduct from "../Pages/Products/SingleProduct/SingleProduct";
+import AddEvent from "../Pages/Events/AddEvent/AddEvent";
 
 const router = createBrowserRouter([
     {
@@ -21,6 +22,18 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />
+            },
+            {
+                path: '/categories-list',
+                element: <CategoriesList />
+            },
+            {
+                path: '/add-category',
+                element: <AddCategory />
+            },
+            {
+                path: '/update-category',
+                element: <UpdateCategory />
             },
             {
                 path: '/products-list',
@@ -39,16 +52,8 @@ const router = createBrowserRouter([
                 element: <UpdateProduct />
             },
             {
-                path: '/categories-list',
-                element: <CategoriesList />
-            },
-            {
-                path: '/add-category',
-                element: <AddCategory />
-            },
-            {
-                path: '/update-category',
-                element: <UpdateCategory />
+                path: '/add-event',
+                element: <AddEvent />
             },
             {
                 path: '/add-job',
