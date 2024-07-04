@@ -13,6 +13,7 @@ import UpdateJob from "../Pages/Careers/UpdateJob/UpdateJob";
 import CategoriesList from "../Pages/Categories/CategoriesList/CategoriesList";
 import SingleProduct from "../Pages/Products/SingleProduct/SingleProduct";
 import AddEvent from "../Pages/Events/AddEvent/AddEvent";
+import UpdateEvent from "../Pages/Events/UpdateEvent/UpdateEvent";
 
 const router = createBrowserRouter([
     {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path: '/add-event',
                 element: <AddEvent />
+            },
+            {
+                path: '/update-event',
+                element: <UpdateEvent />
             },
             {
                 path: '/add-job',
