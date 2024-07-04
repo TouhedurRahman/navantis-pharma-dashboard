@@ -59,17 +59,17 @@ const SingleProduct = () => {
                             </table>
                         </div>
                         <div className="mt-10 w-full">
-                            <h2 className="pb-1 text-gray-600">Usage</h2>
+                            <h2 className="pb-1 text-gray-600 font-bold">Usage</h2>
                             <hr className='text-center w-[30%] border border-gray-500 mb-1' />
                             <h2 className="text-gray-600">{product.usage}</h2>
                         </div>
                         <div className="mt-10 w-full">
-                            <h2 className="pb-1 text-gray-600">Apply</h2>
+                            <h2 className="pb-1 text-gray-600 font-bold">Apply</h2>
                             <hr className='text-center w-[30%] border border-gray-500 mb-1' />
                             <h2 className="text-gray-600">{product.apply}</h2>
                         </div>
                         <div className="mt-10 w-full">
-                            <h2 className="pb-1 text-gray-600">Description</h2>
+                            <h2 className="pb-1 text-gray-600 font-bold">Description</h2>
                             <hr className='text-center w-[30%] border border-gray-500 mb-1' />
                             <h2 className="text-gray-600 text-justify">{product.description}</h2>
                         </div>

@@ -1,4 +1,4 @@
-import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
+import { FaEdit, FaTrashAlt } from "react-icons/fa";
 
 const CategoryCard = ({ category }) => {
     return (
@@ -21,9 +21,6 @@ const CategoryCard = ({ category }) => {
             </td>
             <th className="text-center">
                 <div className="flex justify-center items-center space-x-4 text-md">
-                    <button className="p-2 rounded-[5px] hover:bg-green-100 focus:outline-none">
-                        <FaEye className="text-green-500" />
-                    </button>
                     <button className="p-2 rounded-[5px] hover:bg-orange-100 focus:outline-none">
                         <FaEdit className="text-orange-500" />
                     </button>

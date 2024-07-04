@@ -15,6 +15,7 @@ import SingleProduct from "../Pages/Products/SingleProduct/SingleProduct";
 import AddEvent from "../Pages/Events/AddEvent/AddEvent";
 import UpdateEvent from "../Pages/Events/UpdateEvent/UpdateEvent";
 import EventsList from "../Pages/Events/EventsList/EventsList";
+import SingleEvent from "../Pages/Events/SingleEvent/SingleEvent";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: '/events-list',
                 element: <EventsList />
+            },
+            {
+                path: '/event/:id',
+                element: <SingleEvent />
             },
             {
                 path: '/add-event',
