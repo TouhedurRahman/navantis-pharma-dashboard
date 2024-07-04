@@ -16,6 +16,7 @@ import AddEvent from "../Pages/Events/AddEvent/AddEvent";
 import UpdateEvent from "../Pages/Events/UpdateEvent/UpdateEvent";
 import EventsList from "../Pages/Events/EventsList/EventsList";
 import SingleEvent from "../Pages/Events/SingleEvent/SingleEvent";
+import CareersList from "../Pages/Careers/CareersList/CareersList";
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
             {
                 path: '/update-event',
                 element: <UpdateEvent />
+            },
+            {
+                path: '/careers-list',
+                element: <CareersList />
             },
             {
                 path: '/add-job',

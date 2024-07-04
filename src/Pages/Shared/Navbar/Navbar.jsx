@@ -146,7 +146,7 @@ const Navbar = () => {
                                     {menu === 'career' && (
                                         <>
                                             <Link
-                                                to='/career-list'
+                                                to='/careers-list'
                                                 className="w-full text-left px-4 text-white flex"
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
@@ -348,7 +348,7 @@ const Navbar = () => {
                 </div>
 
                 <div className="bg-white p-5">
-                    <p className='font-mono font-extrabold'><small>Copyright © {year} by Navantis Pharma Ltd.</small></p>
+                    <p className='text-gray-500 font-extrabold'><small>Copyright © {year} by Navantis Pharma Ltd.</small></p>
                 </div>
             </div>
         </div>
