@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleRight, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
 import { LuLogOut } from "react-icons/lu";
-import { MdDashboard, MdOutlineWorkHistory } from "react-icons/md";
+import { MdDashboard, MdEventNote, MdOutlineWorkHistory } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 import { FaLayerGroup, FaListUl } from "react-icons/fa";
 import { FiHelpCircle } from "react-icons/fi";
@@ -27,6 +27,7 @@ const Navbar = () => {
     const [showDropdown, setShowDropdown] = useState({
         products: false,
         categories: false,
+        events: false,
         queries: false,
         career: false,
     });
@@ -67,12 +68,13 @@ const Navbar = () => {
                 }
 
                 <div className='mt-10 mx-2'>
-                    {['products', 'categories', 'queries', 'career'].map((menu, index) => (
+                    {['categories', 'products', 'events', 'queries', 'career'].map((menu, index) => (
                         <div className="relative inline-block w-full" key={index}>
                             <div onClick={() => toggleDropdown(menu)} className={`flex items-center cursor-pointer ${isSidebarOpen ? 'justify-between' : 'justify-center'}`}>
                                 <div className="flex items-center py-2">
-                                    {menu === 'products' && <MdDashboard onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {menu === 'categories' && <FaLayerGroup onClick={() => setSidebarOpen(true)} className="mr-2" />}
+                                    {menu === 'products' && <MdDashboard onClick={() => setSidebarOpen(true)} className="mr-2" />}
+                                    {menu === 'events' && <MdEventNote onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {menu === 'queries' && <FiHelpCircle onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {menu === 'career' && <MdWorkOutline onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {isSidebarOpen && (
@@ -85,6 +87,22 @@ const Navbar = () => {
                             </div>
                             {showDropdown[menu] && isSidebarOpen && (
                                 <div className="m-2 pl-4">
+                                    {menu === 'categories' && (
+                                        <>
+                                            <Link to='/categories-list' className="w-full text-left px-4 text-white flex">
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <FaListUl className='me-2' />
+                                                    <span>List</span>
+                                                </div>
+                                            </Link>
+                                            <Link to='/add-category' className="w-full text-left px-4 text-white flex">
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <IoIosAddCircle className='me-2' />
+                                                    <span>Add new</span>
+                                                </div>
+                                            </Link>
+                                        </>
+                                    )}
                                     {menu === 'products' && (
                                         <>
                                             <Link to='/products-list' className="w-full text-left px-4 text-white flex">
@@ -101,15 +119,15 @@ const Navbar = () => {
                                             </Link>
                                         </>
                                     )}
-                                    {menu === 'categories' && (
+                                    {menu === 'events' && (
                                         <>
-                                            <Link to='/categories-list' className="w-full text-left px-4 text-white flex">
+                                            <Link to='/events-list' className="w-full text-left px-4 text-white flex">
                                                 <div className='flex justify-start items-center cursor:pointer'>
                                                     <FaListUl className='me-2' />
                                                     <span>List</span>
                                                 </div>
                                             </Link>
-                                            <Link to='/add-category' className="w-full text-left px-4 text-white flex">
+                                            <Link to='/add-event' className="w-full text-left px-4 text-white flex">
                                                 <div className='flex justify-start items-center cursor:pointer'>
                                                     <IoIosAddCircle className='me-2' />
                                                     <span>Add new</span>
@@ -182,12 +200,13 @@ const Navbar = () => {
 
                 {/* for mobile screen */}
                 <div className={`md:hidden ${isMobileMenuOpen ? 'block w-1/2 h-full absolute mt-[80px] z-10' : 'hidden'} bg-[#1F2937] p-4 text-white`}>
-                    {['products', 'categories', 'queries', 'career'].map((menu, index) => (
+                    {['categories', 'products', 'events', 'queries', 'career'].map((menu, index) => (
                         <div className="relative inline-block w-full" key={index}>
                             <div onClick={() => toggleDropdown(menu)} className={`flex items-center cursor-pointer ${isSidebarOpen ? 'justify-between' : 'justify-center'}`}>
                                 <div className="flex items-center py-2">
-                                    {menu === 'products' && <MdDashboard onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {menu === 'categories' && <FaLayerGroup onClick={() => setSidebarOpen(true)} className="mr-2" />}
+                                    {menu === 'products' && <MdDashboard onClick={() => setSidebarOpen(true)} className="mr-2" />}
+                                    {menu === 'events' && <MdEventNote onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {menu === 'queries' && <FiHelpCircle onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {menu === 'career' && <MdWorkOutline onClick={() => setSidebarOpen(true)} className="mr-2" />}
                                     {isSidebarOpen && (
@@ -200,6 +219,30 @@ const Navbar = () => {
                             </div>
                             {showDropdown[menu] && isSidebarOpen && (
                                 <div className="m-2 pl-4">
+                                    {menu === 'categories' && (
+                                        <>
+                                            <Link
+                                                to='/categories-list'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <FaListUl className='me-2' />
+                                                    <span>List</span>
+                                                </div>
+                                            </Link>
+                                            <Link
+                                                to='/add-category'
+                                                className="w-full text-left px-4 text-white flex"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                <div className='flex justify-start items-center cursor:pointer'>
+                                                    <IoIosAddCircle className='me-2' />
+                                                    <span>Add new</span>
+                                                </div>
+                                            </Link>
+                                        </>
+                                    )}
                                     {menu === 'products' && (
                                         <>
                                             <Link
@@ -224,10 +267,10 @@ const Navbar = () => {
                                             </Link>
                                         </>
                                     )}
-                                    {menu === 'categories' && (
+                                    {menu === 'events' && (
                                         <>
                                             <Link
-                                                to='/categories-list'
+                                                to='/events-list'
                                                 className="w-full text-left px-4 text-white flex"
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
@@ -237,7 +280,7 @@ const Navbar = () => {
                                                 </div>
                                             </Link>
                                             <Link
-                                                to='/add-category'
+                                                to='/add-event'
                                                 className="w-full text-left px-4 text-white flex"
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >

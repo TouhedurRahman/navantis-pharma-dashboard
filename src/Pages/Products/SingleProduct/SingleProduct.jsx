@@ -9,7 +9,8 @@ const SingleProduct = () => {
     const product = products.find(product => product._id == id);
 
     const capitalizeWords = (str) => {
-        return str.replace(/\b\w/g, char => char.toUpperCase());
+        return str.replace(/-/g, ' ')
+            .replace(/\b\w/g, char => char.toUpperCase());
     };
 
     return (
