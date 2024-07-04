@@ -14,6 +14,7 @@ import CategoriesList from "../Pages/Categories/CategoriesList/CategoriesList";
 import SingleProduct from "../Pages/Products/SingleProduct/SingleProduct";
 import AddEvent from "../Pages/Events/AddEvent/AddEvent";
 import UpdateEvent from "../Pages/Events/UpdateEvent/UpdateEvent";
+import EventsList from "../Pages/Events/EventsList/EventsList";
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ const router = createBrowserRouter([
             {
                 path: '/update-product',
                 element: <UpdateProduct />
+            },
+            {
+                path: '/events-list',
+                element: <EventsList />
             },
             {
                 path: '/add-event',

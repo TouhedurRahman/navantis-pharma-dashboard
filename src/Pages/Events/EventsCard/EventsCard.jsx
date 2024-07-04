@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ProductsCard = ({ product }) => {
+const EventsCard = ({ event }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleDescription = () => {
@@ -25,7 +25,7 @@ const ProductsCard = ({ product }) => {
         };
     };
 
-    const { truncated, remaining, isTruncated } = truncateDescription(product.description, 30);
+    const { truncated, remaining, isTruncated } = truncateDescription(event.description, 30);
 
     return (
         <tr>
@@ -34,7 +34,7 @@ const ProductsCard = ({ product }) => {
                     <div className="avatar">
                         <div className="mask mask-squircle h-12 w-12">
                             <img
-                                src={product.imageURL}
+                                src={event.imageURL}
                                 alt="Loading..." />
                         </div>
                     </div>
@@ -42,8 +42,8 @@ const ProductsCard = ({ product }) => {
             </td>
             <td>
                 <div>
-                    <div className="font-bold">{product.name}</div>
-                    <div className="text-sm opacity-80">{product.subtitle}</div>
+                    <div className="font-bold">{event.title}</div>
+                    <div className="text-sm opacity-80">{event.date}</div>
                 </div>
             </td>
             <td>
@@ -60,7 +60,7 @@ const ProductsCard = ({ product }) => {
             </td>
             <th>
                 <div className="flex justify-center items-center space-x-4 text-md">
-                    <Link to={`/product/${product._id}`}>
+                    <Link to={`/event/${event._id}`}>
                         <button className="p-2 rounded-[5px] hover:bg-green-100 focus:outline-none">
                             <FaEye className="text-green-500" />
                         </button>
@@ -77,4 +77,4 @@ const ProductsCard = ({ product }) => {
     );
 };
 
-export default ProductsCard;
+export default EventsCard;
