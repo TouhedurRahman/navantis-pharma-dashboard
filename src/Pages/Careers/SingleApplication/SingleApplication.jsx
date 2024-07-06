@@ -59,10 +59,9 @@ const SingleApplication = () => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="mt-10 w-full">
-                        <h2 className="pb-1 text-gray-600 font-bold">Job location</h2>
-                        <hr className='text-center w-[30%] border border-gray-500 mb-1' />
-                        <h2 className="text-gray-600">{application.jobLocation}</h2>
+                    <div className="mt-10 w-full flex">
+                        <h2 className="pb-1 text-gray-600 font-bold">Job location: </h2>
+                        <h2 className="text-gray-600 ml-1">{application.jobLocation}</h2>
                     </div>
                     <div className="mt-10 w-full">
                         <h2 className="pb-1 text-gray-600 font-bold">Cover letter</h2>
