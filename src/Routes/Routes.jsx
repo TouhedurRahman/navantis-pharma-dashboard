@@ -21,6 +21,7 @@ import SingleCircular from "../Pages/Careers/SingleCircular/SingleCircular";
 import ApplicationsList from "../Pages/Careers/ApplicationsList/ApplicationsList";
 import SingleApplication from "../Pages/Careers/SingleApplication/SingleApplication";
 import QueriesList from "../Pages/Quries/QuriesList/QuriesList";
+import SingleQuery from "../Pages/Quries/SingleQuery/SingleQuery";
 
 const router = createBrowserRouter([
     {
@@ -86,6 +87,10 @@ const router = createBrowserRouter([
             {
                 path: '/careers-list',
                 element: <CareersList />
+            },
+            {
+                path: '/query/:id',
+                element: <SingleQuery />
             },
             {
                 path: '/add-job',
