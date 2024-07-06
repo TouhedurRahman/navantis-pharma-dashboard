@@ -20,6 +20,7 @@ import CareersList from "../Pages/Careers/CareersList/CareersList";
 import SingleCircular from "../Pages/Careers/SingleCircular/SingleCircular";
 import ApplicationsList from "../Pages/Careers/ApplicationsList/ApplicationsList";
 import SingleApplication from "../Pages/Careers/SingleApplication/SingleApplication";
+import QueriesList from "../Pages/Quries/QuriesList/QuriesList";
 
 const router = createBrowserRouter([
     {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
             {
                 path: '/update-event',
                 element: <UpdateEvent />
+            },
+            {
+                path: '/queries-list',
+                element: <QueriesList />
             },
             {
                 path: '/career/:id',
