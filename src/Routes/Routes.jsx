@@ -19,6 +19,7 @@ import SingleEvent from "../Pages/Events/SingleEvent/SingleEvent";
 import CareersList from "../Pages/Careers/CareersList/CareersList";
 import SingleCircular from "../Pages/Careers/SingleCircular/SingleCircular";
 import ApplicationsList from "../Pages/Careers/ApplicationsList/ApplicationsList";
+import SingleApplication from "../Pages/Careers/SingleApplication/SingleApplication";
 
 const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
             {
                 path: '/career-applications',
                 element: <ApplicationsList />
+            },
+            {
+                path: '/application/:id',
+                element: <SingleApplication />
             }
         ]
     },
