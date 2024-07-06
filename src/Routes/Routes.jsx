@@ -17,6 +17,7 @@ import UpdateEvent from "../Pages/Events/UpdateEvent/UpdateEvent";
 import EventsList from "../Pages/Events/EventsList/EventsList";
 import SingleEvent from "../Pages/Events/SingleEvent/SingleEvent";
 import CareersList from "../Pages/Careers/CareersList/CareersList";
+import SingleCircular from "../Pages/Careers/SingleCircular/SingleCircular";
 
 const router = createBrowserRouter([
     {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: '/update-event',
                 element: <UpdateEvent />
+            },
+            {
+                path: '/career/:id',
+                element: <SingleCircular />
             },
             {
                 path: '/careers-list',
