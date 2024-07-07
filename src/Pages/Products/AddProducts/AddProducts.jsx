@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
+import useOnlyCategories from "../../../Hooks/useOnlyCategories";
 
 const AddProducts = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const [onlyCategories] = useOnlyCategories();
 
     const onSubmit = data => {
         const newProduct = {
@@ -100,9 +103,19 @@ const AddProducts = () => {
                                 className="border-gray-500 bg-white border p-2 text-sm cursor-pointer"
                             >
                                 <option value="">Select category</option>
-                                <option value="Category1">Category 1</option>
-                                <option value="Category2">Category 2</option>
-                                <option value="Category3">Category 3</option>
+                                {
+                                    onlyCategories.map((categorySingle, index) => {
+                                        const categoryName = categorySingle.category.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+                                        return (
+                                            <option
+                                                key={index}
+                                                value={categorySingle.category}
+                                            >
+                                                {categoryName}
+                                            </option>
+                                        );
+                                    })
+                                }
                             </select>
                             {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
                         </div>
