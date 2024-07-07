@@ -7,13 +7,17 @@ const UpdateProduct = () => {
 
     const [onlyCategories] = useOnlyCategories();
 
+    const transformGroup = (name) => {
+        return name.toLowerCase().replace(/\s+/g, '-');
+    };
+
     const onSubmit = data => {
         const updatedProduct = {
             name: data.name,
             subtitle: data.subtitle,
             forSearch: data.name + " " + data.subtitle,
             usage: data.usage,
-            group: data.group,
+            group: transformGroup(data.group),
             category: data.category,
             apply: data.apply,
             description: data.description,

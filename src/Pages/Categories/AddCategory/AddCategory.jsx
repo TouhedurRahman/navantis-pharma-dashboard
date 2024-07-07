@@ -4,10 +4,14 @@ import PageTitle from "../../../Components/PageTitle/PageTitle";
 const AddCategory = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
 
+    const transformCategory = (name) => {
+        return name.toLowerCase().replace(/\s+/g, '-');
+    };
+
     const onSubmit = data => {
         const newCategory = {
             name: data.name,
-            category: data.category,
+            category: transformCategory(data.name),
             addedBy: data.addedby,
             addedEmail: data.addedemail,
             imageURL: data.imageFile
@@ -26,29 +30,16 @@ const AddCategory = () => {
                 <h1 className="px-6 py-3 font-bold">Add new category</h1>
                 <hr className='text-center border border-gray-500 mb-5' />
                 <form onSubmit={handleSubmit(onSubmit)} className="p-6 pt-0">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
-                        <div className="flex flex-col">
-                            <label className="text-[#6E719A] mb-1 text-sm">
-                                Name <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                                {...register("name", { required: "Name is required" })}
-                                placeholder="Enter product name"
-                                className="border-gray-500 bg-white border p-2 text-sm"
-                            />
-                            {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
-                        </div>
-                        <div className="flex flex-col">
-                            <label className="text-[#6E719A] mb-1 text-sm">
-                                Category <span className="text-red-500">*</span>
-                            </label>
-                            <input
-                                {...register("category", { required: "Category is required" })}
-                                placeholder="Enter category"
-                                className="border-gray-500 bg-white border p-2 text-sm"
-                            />
-                            {errors.category && <p className="text-red-500 text-sm">{errors.category.message}</p>}
-                        </div>
+                    <div className="flex flex-col mb-2">
+                        <label className="text-[#6E719A] mb-1 text-sm">
+                            Name <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            {...register("name", { required: "Name is required" })}
+                            placeholder="Enter Name"
+                            className="border-gray-500 bg-white border p-2 text-sm"
+                        />
+                        {errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p>}
                     </div>
                     <div className="flex flex-col mb-2">
                         <label className="text-[#6E719A] mb-1 text-sm">
