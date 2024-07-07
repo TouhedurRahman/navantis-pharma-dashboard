@@ -46,7 +46,7 @@ To get a local copy up and running, follow these steps:
 
 3. **Set up environment variables**
 
-    Create a `.env` file in the root directory and add the necessary environment variables for Firebase and any other services you use.
+    Create a `.env.local` file in the root directory and add the necessary environment variables for Firebase and any other services you use.
 
 4. **Start the development server**
 
@@ -69,6 +69,7 @@ The dashboard provides the following features:
 The backend of this project is managed separately. You can find the backend repository here:
 
 Navantis Pharma Client: [Click here](https://github.com/TouhedurRahman/navantis-pharma-client)
+
 Navantis Pharma Server: [Click here](https://github.com/TouhedurRahman/navantis-pharma-server)
 
 ## Developed By
