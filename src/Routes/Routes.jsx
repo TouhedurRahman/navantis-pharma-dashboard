@@ -97,7 +97,7 @@ const router = createBrowserRouter([
                 element: <AddJob />
             },
             {
-                path: '/update-job',
+                path: '/update-career/:id',
                 element: <UpdateJob />
             },
             {
