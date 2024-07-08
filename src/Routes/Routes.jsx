@@ -73,7 +73,7 @@ const router = createBrowserRouter([
                 element: <AddEvent />
             },
             {
-                path: '/update-event',
+                path: '/update-event/:id',
                 element: <UpdateEvent />
             },
             {

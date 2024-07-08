@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import useEvents from "../../../Hooks/useEvents";
@@ -33,9 +33,11 @@ const SingleEvent = () => {
                                         <h2 className="pb-3 text-gray-600">{event.date}</h2>
                                     </div>
                                     <div className="flex justify-center items-center space-x-2 text-xl">
-                                        <button className="p-2 rounded-[5px] hover:bg-orange-100 focus:outline-none">
-                                            <FaEdit className="text-orange-500" />
-                                        </button>
+                                        <Link to={`/update-event/${event._id}`}>
+                                            <button className="p-2 rounded-[5px] hover:bg-orange-100 focus:outline-none">
+                                                <FaEdit className="text-orange-500" />
+                                            </button>
+                                        </Link>
                                         <button className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none">
                                             <FaTrashAlt className="text-red-500" />
                                         </button>
