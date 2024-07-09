@@ -226,10 +226,19 @@ const UpdateProduct = () => {
                                 <div className="flex flex-col mb-2">
                                     <label className="text-[#6E719A] mb-1 text-sm">Mother company link (If available)</label>
                                     <input
-                                        {...register("motherCompanyLink")}
+                                        defaultValue={product.moComLink}
+                                        {...register("motherCompanyLink", {
+                                            pattern: {
+                                                value: /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i,
+                                                message: "Enter a valid URL"
+                                            }
+                                        })}
                                         placeholder="Enter mother company link"
                                         className="border-gray-500 bg-white border p-2 text-sm"
                                     />
+                                    {errors.motherCompanyLink && (
+                                        <span className="text-red-500 text-sm">{errors.motherCompanyLink.message}</span>
+                                    )}
                                 </div>
 
                                 <h1 className="mt-10 text-sm">Product updated by</h1>
