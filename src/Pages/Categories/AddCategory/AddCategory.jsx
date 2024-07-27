@@ -37,7 +37,7 @@ const AddCategory = () => {
                             reset();
                             Swal.fire({
                                 icon: "success",
-                                title: "New Product successfully added!",
+                                title: "New Category successfully added!",
                                 showConfirmButton: false,
                                 timer: 1000
                             });
