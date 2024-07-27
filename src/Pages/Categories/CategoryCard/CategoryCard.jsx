@@ -2,6 +2,13 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const CategoryCard = ({ category }) => {
+
+    const createdDate = new Date(category.createdAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
     return (
         <tr>
             <td className="text-center">
@@ -19,6 +26,23 @@ const CategoryCard = ({ category }) => {
                 <div>
                     <div className="font-bold">{category.name}</div>
                 </div>
+            </td>
+            <td>
+                {
+                    category.updatedBy
+                        ?
+                        <>
+
+                        </>
+                        :
+                        <>
+                            <div className="text-sm text-center">
+                                <p>{category.addedBy} {category.addedBy && '(A)'}</p>
+                                <p>{category.addedEmail}</p>
+                                <p>{category.createdAt && createdDate}</p>
+                            </div>
+                        </>
+                }
             </td>
             <th className="text-center">
                 <div className="flex justify-center items-center space-x-4 text-md">

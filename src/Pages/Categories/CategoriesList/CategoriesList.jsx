@@ -100,6 +100,7 @@ const CategoriesList = () => {
                                             <tr>
                                                 <th className="text-center">Image</th>
                                                 <th className="text-center">Name</th>
+                                                <th className="text-center">Added(A)/Updated(U) by</th>
                                                 <th className="text-center">Action</th>
                                             </tr>
                                         </thead>
