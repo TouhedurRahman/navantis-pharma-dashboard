@@ -64,12 +64,14 @@ const SingleQuery = () => {
                                             <tr>
                                                 <th className="text-center">Email</th>
                                                 <th className="text-center">Phone</th>
+                                                <th className="text-center">Location</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr>
                                                 <td className="text-center">{query.email}</td>
                                                 <td className="text-center">{query.phone}</td>
+                                                <td className="text-center">{query.location}</td>
                                             </tr>
                                         </tbody>
                                     </table>
