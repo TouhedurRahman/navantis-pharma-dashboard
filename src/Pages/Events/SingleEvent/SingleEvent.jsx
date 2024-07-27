@@ -9,6 +9,15 @@ const SingleEvent = () => {
     const { id } = useParams();
     const event = events.find(event => event._id == id);
 
+    let eventDate;
+    if (event) {
+        eventDate = new Date(event.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+    }
+
     return (
         <>
             <div>
@@ -30,7 +39,7 @@ const SingleEvent = () => {
                                 <div className="flex justify-between items-center px-6">
                                     <div>
                                         <h1 className="pt-3 font-bold text-2xl">{event.title}</h1>
-                                        <h2 className="pb-3 text-gray-600">{event.date}</h2>
+                                        <h2 className="pb-3 text-gray-600">{eventDate}</h2>
                                     </div>
                                     <div className="flex justify-center items-center space-x-2 text-xl">
                                         <Link to={`/update-event/${event._id}`}>

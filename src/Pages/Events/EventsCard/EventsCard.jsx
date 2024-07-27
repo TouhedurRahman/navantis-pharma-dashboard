@@ -9,6 +9,15 @@ const EventsCard = ({ event }) => {
         setIsExpanded(!isExpanded);
     };
 
+    let eventDate;
+    if (event) {
+        eventDate = new Date(event.date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+    }
+
     const truncateDescription = (description, wordLimit) => {
         const words = description.split(' ');
         if (words.length > wordLimit) {
@@ -43,7 +52,7 @@ const EventsCard = ({ event }) => {
             <td>
                 <div>
                     <div className="font-bold">{event.title}</div>
-                    <div className="text-sm opacity-80">{event.date}</div>
+                    <div className="text-sm opacity-80">{eventDate}</div>
                 </div>
             </td>
             <td>
