@@ -14,24 +14,6 @@ const AddProducts = () => {
         return name.toLowerCase().replace(/\s+/g, '-');
     };
 
-    /* const onSubmit = data => {
-        const newProduct = {
-            name: data.name,
-            subtitle: data.subtitle,
-            forSearch: data.name + " " + data.subtitle,
-            usage: data.usage,
-            group: transformGroup(data.group),
-            category: data.category,
-            apply: data.apply,
-            description: data.description,
-            moComLink: data.motherCompanyLink,
-            addedBy: data.addedby,
-            addedEmail: data.addedemail,
-            imageURL: data.imageFile
-        }
-        console.log(newProduct);
-    } */
-
     const handleAddProduct = data => {
         const formData = new FormData();
         formData.append("image", data.image[0]);
