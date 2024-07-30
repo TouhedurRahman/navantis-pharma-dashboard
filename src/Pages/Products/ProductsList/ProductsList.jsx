@@ -7,7 +7,7 @@ import { ImSearch } from 'react-icons/im';
 import Loader from "../../../Components/Loader/Loader";
 
 const ProductsList = () => {
-    const [products, loading] = useProducts();
+    const [products, loading, refetch] = useProducts();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -110,6 +110,7 @@ const ProductsList = () => {
                                                     <ProductsCard
                                                         key={product._id}
                                                         product={product}
+                                                        refetch={refetch}
                                                     />
                                                 ))
                                             }

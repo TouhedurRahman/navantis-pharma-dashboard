@@ -1,13 +1,16 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import useProducts from "../../../Hooks/useProducts";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import Loader from "../../../Components/Loader/Loader";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const SingleProduct = () => {
-    const [products, loading] = useProducts();
+    const [products, loading, refetch] = useProducts();
     const { id } = useParams();
     const product = products.find(product => product._id == id);
+    const navigate = useNavigate();
 
     const capitalizeWords = (str) => {
         return str.replace(/-/g, ' ')
@@ -27,6 +30,32 @@ const SingleProduct = () => {
         });
     }
 
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/product/${product._id}`)
+                    .then(response => {
+                        if (response.data.deletedCount > 0) {
+                            refetch();
+                            navigate('/products-list');
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Product has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <>
@@ -58,7 +87,10 @@ const SingleProduct = () => {
                                                     <FaEdit className="text-orange-500" />
                                                 </button>
                                             </Link>
-                                            <button className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none">
+                                            <button
+                                                onClick={() => handleDelete()}
+                                                className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none"
+                                            >
                                                 <FaTrashAlt className="text-red-500" />
                                             </button>
                                         </div>

@@ -1,8 +1,10 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { FaEdit, FaEye, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const ProductsCard = ({ product }) => {
+const ProductsCard = ({ product, refetch }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
     const toggleDescription = () => {
@@ -26,6 +28,32 @@ const ProductsCard = ({ product }) => {
     };
 
     const { truncated, remaining, isTruncated } = truncateDescription(product.description, 30);
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/product/${product._id}`)
+                    .then(response => {
+                        if (response.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Product has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <tr>
@@ -70,7 +98,10 @@ const ProductsCard = ({ product }) => {
                             <FaEdit className="text-orange-500" />
                         </button>
                     </Link>
-                    <button className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none">
+                    <button
+                        onClick={() => handleDelete()}
+                        className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none"
+                    >
                         <FaTrashAlt className="text-red-500" />
                     </button>
                 </div>
