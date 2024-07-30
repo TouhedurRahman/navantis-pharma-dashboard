@@ -7,7 +7,7 @@ import useEvents from "../../../Hooks/useEvents";
 import Loader from "../../../Components/Loader/Loader";
 
 const EventsList = () => {
-    const [events, loading] = useEvents();
+    const [events, loading, refetch] = useEvents();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -110,6 +110,7 @@ const EventsList = () => {
                                                     <EventsCard
                                                         key={event._id}
                                                         event={event}
+                                                        refetch={refetch}
                                                     />
                                                 ))
                                             }
