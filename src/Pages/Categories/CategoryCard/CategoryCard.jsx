@@ -1,13 +1,41 @@
+import axios from "axios";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const CategoryCard = ({ category }) => {
+const CategoryCard = ({ category, refetch }) => {
 
     const createdDate = new Date(category.createdAt).toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
     });
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/category/${category._id}`)
+                    .then(response => {
+                        if (response.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Category has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        })
+    };
 
     return (
         <tr>
@@ -51,7 +79,10 @@ const CategoryCard = ({ category }) => {
                             <FaEdit className="text-orange-500" />
                         </button>
                     </Link>
-                    <button className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none">
+                    <button
+                        onClick={() => handleDelete()}
+                        className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none"
+                    >
                         <FaTrashAlt className="text-red-500" />
                     </button>
                 </div>

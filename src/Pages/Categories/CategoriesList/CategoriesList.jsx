@@ -7,7 +7,7 @@ import CategoryCard from "../CategoryCard/CategoryCard";
 import Loader from "../../../Components/Loader/Loader";
 
 const CategoriesList = () => {
-    const [categories, loading] = useCategories();
+    const [categories, loading, refetch] = useCategories();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -110,6 +110,7 @@ const CategoriesList = () => {
                                                     <CategoryCard
                                                         key={category._id}
                                                         category={category}
+                                                        refetch={refetch}
                                                     />
                                                 ))
                                             }
