@@ -1,14 +1,18 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import { FaTrashAlt } from "react-icons/fa";
 import useQueries from "../../../Hooks/useQueries";
 import { useForm } from "react-hook-form";
 import Loader from "../../../Components/Loader/Loader";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const SingleQuery = () => {
-    const [queries, loading] = useQueries();
+    const [queries, loading, refetch] = useQueries();
     const { id } = useParams();
     const query = queries.find(query => query._id === id);
+
+    const navigate = useNavigate();
 
     let formattedDate;
     if (query) {
@@ -25,6 +29,33 @@ const SingleQuery = () => {
         console.log("Reply submitted:", data.reply);
         reset();
     };
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/query/${query._id}`)
+                    .then(response => {
+                        if (response.data.deletedCount > 0) {
+                            refetch();
+                            navigate('/queries-list');
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Query has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <>
@@ -50,7 +81,10 @@ const SingleQuery = () => {
                                         <h2 className="pb-3 text-gray-600">{formattedDate}</h2>
                                     </div>
                                     <div className="flex justify-center items-center space-x-2 text-xl">
-                                        <button className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none">
+                                        <button
+                                            onClick={() => handleDelete()}
+                                            className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none"
+                                        >
                                             <FaTrashAlt className="text-red-500" />
                                         </button>
                                     </div>

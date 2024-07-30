@@ -7,7 +7,7 @@ import useQueries from "../../../Hooks/useQueries";
 import Loader from "../../../Components/Loader/Loader";
 
 const QueriesList = () => {
-    const [queries, loading] = useQueries();
+    const [queries, loading, refetch] = useQueries();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -110,6 +110,7 @@ const QueriesList = () => {
                                                     <QuriesCard
                                                         key={query._id}
                                                         query={query}
+                                                        refetch={refetch}
                                                     />
                                                 ))
                                             }
