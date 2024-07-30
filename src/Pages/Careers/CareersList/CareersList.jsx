@@ -7,7 +7,7 @@ import useCareers from "../../../Hooks/useCareers";
 import Loader from "../../../Components/Loader/Loader";
 
 const CareersList = () => {
-    const [careers, loading] = useCareers();
+    const [careers, loading, refetch] = useCareers();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -111,6 +111,7 @@ const CareersList = () => {
                                                     <CareersCard
                                                         key={career._id}
                                                         career={career}
+                                                        refetch={refetch}
                                                     />
                                                 ))
                                             }

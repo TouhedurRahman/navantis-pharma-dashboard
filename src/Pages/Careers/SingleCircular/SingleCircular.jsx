@@ -1,13 +1,44 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import useCareers from "../../../Hooks/useCareers";
 import Loader from "../../../Components/Loader/Loader";
+import Swal from "sweetalert2";
+import axios from "axios";
 
 const SingleCircular = () => {
-    const [careers, loading] = useCareers();
+    const [careers, loading, refetch] = useCareers();
     const { id } = useParams();
     const career = careers.find(career => career._id == id);
+
+    const navigate = useNavigate();
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/career/${career._id}`)
+                    .then(response => {
+                        if (response.data.deletedCount > 0) {
+                            refetch();
+                            navigate('/careers-list')
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Career has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <>
@@ -38,7 +69,10 @@ const SingleCircular = () => {
                                                 <FaEdit className="text-orange-500" />
                                             </button>
                                         </Link>
-                                        <button className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none">
+                                        <button
+                                            onClick={() => handleDelete()}
+                                            className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none"
+                                        >
                                             <FaTrashAlt className="text-red-500" />
                                         </button>
                                     </div>
