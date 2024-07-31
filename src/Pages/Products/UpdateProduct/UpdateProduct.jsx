@@ -2,18 +2,24 @@ import { useForm } from "react-hook-form";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import useOnlyCategories from "../../../Hooks/useOnlyCategories";
 import useProducts from "../../../Hooks/useProducts";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import Loader from "../../../Components/Loader/Loader";
+import axios from "axios";
+import useHosting from "../../../Hooks/useHosting";
+import Swal from "sweetalert2";
 
 const UpdateProduct = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [products, loading] = useProducts();
     const [onlyCategories] = useOnlyCategories();
     const [editImage, setEditImage] = useState(false);
+
+    const img_hosting_url = useHosting();
+    const navigate = useNavigate();
 
     const { id } = useParams();
     const product = products.find(product => product._id == id);
@@ -29,22 +35,47 @@ const UpdateProduct = () => {
         return name.toLowerCase().replace(/\s+/g, '-');
     };
 
-    const onSubmit = data => {
-        const updatedProduct = {
-            name: data.name,
-            subtitle: data.subtitle,
-            forSearch: data.name + " " + data.subtitle,
-            usage: data.usage,
-            group: transformGroup(data.group),
-            category: data.category,
-            apply: data.apply,
-            description: data.description,
-            moComLink: data.motherCompanyLink,
-            updatedBy: data.updatedby,
-            updatedEmail: data.updatedemail,
-            imageURL: data.imageFile
-        }
-        console.log(updatedProduct);
+    const handleUpdateProduct = data => {
+        const formData = new FormData();
+        formData.append("image", data.image[0]);
+
+        fetch(img_hosting_url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(imgResponse => {
+                const imgURL = imgResponse.data.display_url;
+
+                const updatedProduct = {
+                    name: data.name,
+                    subtitle: data.subtitle,
+                    forSearch: data.name + " " + data.subtitle,
+                    usage: data.usage,
+                    group: transformGroup(data.group),
+                    category: data.category,
+                    apply: data.apply,
+                    description: data.description,
+                    moComLink: data.motherCompanyLink,
+                    updatedBy: data.updatedby,
+                    updatedEmail: data.updatedemail,
+                    imageURL: imgURL
+                }
+
+                axios.patch(`http://localhost:5000/product/${product._id}`, updatedProduct)
+                    .then(response => {
+                        if (response.data.modifiedCount) {
+                            reset();
+                            navigate(`/product/${product._id}`);
+                            Swal.fire({
+                                icon: "success",
+                                title: "Product successfully updated!",
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        }
+                    })
+            })
     }
 
     const handleEditClick = (event) => {
@@ -70,7 +101,7 @@ const UpdateProduct = () => {
                         </>
                         :
                         <>
-                            <form onSubmit={handleSubmit(onSubmit)} className="p-6 pt-0">
+                            <form onSubmit={handleSubmit(handleUpdateProduct)} className="p-6 pt-0">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
                                     <div className="flex flex-col">
                                         <label className="text-[#6E719A] mb-1 text-sm">
@@ -109,7 +140,7 @@ const UpdateProduct = () => {
                                                 <div className="flex items-center">
                                                     <input
                                                         type="file"
-                                                        {...register("imageFile", { required: "Image file is required" })}
+                                                        {...register("image", { required: "Image file is required" })}
                                                         className="h-10 file-input file-input-bordered border-gray-500 w-full rounded-none text-sm cursor-pointer"
                                                     />
                                                     <button
@@ -118,7 +149,7 @@ const UpdateProduct = () => {
                                                         <RxCross1 />
                                                     </button>
                                                 </div>
-                                                {errors.imageFile && <p className="text-red-500 text-sm">{errors.imageFile.message}</p>}
+                                                {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
                                             </div>
                                         </>
                                         :
@@ -130,7 +161,7 @@ const UpdateProduct = () => {
                                                 <div className="flex items-center">
                                                     <input
                                                         defaultValue={product.imageURL}
-                                                        {...register("imageFile")}
+                                                        {...register("image")}
                                                         placeholder="Enter Image URL"
                                                         className="border-gray-500 h-10 bg-white border p-2 text-sm flex-1 cursor-not-allowed"
                                                         readOnly
@@ -250,9 +281,11 @@ const UpdateProduct = () => {
                                             Name <span className="text-red-500">*</span>
                                         </label>
                                         <input
+                                            defaultValue={"Navantis Pharma Limited"}
                                             {...register("updatedby", { required: "Added by is required" })}
                                             placeholder="Enter name of person updating"
-                                            className="border-gray-500 bg-white border p-2 text-sm"
+                                            className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
+                                            readOnly
                                         />
                                         {errors.updatedby && <p className="text-red-500 text-sm">{errors.updatedby.message}</p>}
                                     </div>
@@ -261,6 +294,7 @@ const UpdateProduct = () => {
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
+                                            defaultValue={"info@navantispharma.com"}
                                             {...register("updatedemail", {
                                                 required: "Email is required",
                                                 pattern: {
@@ -269,7 +303,8 @@ const UpdateProduct = () => {
                                                 }
                                             })}
                                             placeholder="Enter email"
-                                            className="border-gray-500 bg-white border p-2 text-sm"
+                                            className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
+                                            readOnly
                                         />
                                         {errors.updatedemail && <p className="text-red-500 text-sm">{errors.updatedemail.message}</p>}
                                     </div>
