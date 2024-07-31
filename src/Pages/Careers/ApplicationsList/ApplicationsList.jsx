@@ -7,7 +7,7 @@ import ApplicationsCard from "../ApplicationsCard/ApplicationsCard";
 import Loader from "../../../Components/Loader/Loader";
 
 const ApplicationsList = () => {
-    const [applications, loading] = useApplications();
+    const [applications, loading, refetch] = useApplications();
 
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
@@ -110,6 +110,7 @@ const ApplicationsList = () => {
                                                     <ApplicationsCard
                                                         key={application._id}
                                                         application={application}
+                                                        refetch={refetch}
                                                     />
                                                 ))
                                             }

@@ -1,7 +1,34 @@
+import axios from "axios";
 import { FaEye, FaTrashAlt } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const ApplicationsCard = ({ application }) => {
+const ApplicationsCard = ({ application, refetch }) => {
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/application/${application._id}`)
+                    .then(response => {
+                        if (response.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Application has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <tr>
@@ -21,7 +48,10 @@ const ApplicationsCard = ({ application }) => {
                             <FaEye className="text-green-500" />
                         </button>
                     </Link>
-                    <button className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none">
+                    <button
+                        onClick={() => handleDelete()}
+                        className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none"
+                    >
                         <FaTrashAlt className="text-red-500" />
                     </button>
                 </div>
