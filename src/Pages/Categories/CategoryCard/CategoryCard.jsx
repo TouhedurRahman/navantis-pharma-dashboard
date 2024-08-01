@@ -11,6 +11,12 @@ const CategoryCard = ({ category, refetch }) => {
         day: 'numeric',
     });
 
+    const updatedDate = new Date(category.updatedAt).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
+
     const handleDelete = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -60,7 +66,11 @@ const CategoryCard = ({ category, refetch }) => {
                     category.updatedBy
                         ?
                         <>
-
+                            <div className="text-sm text-center">
+                                <p>{category.updatedBy} {category.updatedBy && '(U)'}</p>
+                                <p>{category.updatedEmail}</p>
+                                <p>{updatedDate}</p>
+                            </div>
                         </>
                         :
                         <>

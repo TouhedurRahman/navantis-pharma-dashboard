@@ -36,46 +36,76 @@ const UpdateProduct = () => {
     };
 
     const handleUpdateProduct = data => {
-        const formData = new FormData();
-        formData.append("image", data.image[0]);
+        if (editImage === true) {
+            const formData = new FormData();
+            formData.append("image", data.image[0]);
 
-        fetch(img_hosting_url, {
-            method: 'POST',
-            body: formData
-        })
-            .then(res => res.json())
-            .then(imgResponse => {
-                const imgURL = imgResponse.data.display_url;
-
-                const updatedProduct = {
-                    name: data.name,
-                    subtitle: data.subtitle,
-                    forSearch: data.name + " " + data.subtitle,
-                    usage: data.usage,
-                    group: transformGroup(data.group),
-                    category: data.category,
-                    apply: data.apply,
-                    description: data.description,
-                    moComLink: data.motherCompanyLink,
-                    updatedBy: data.updatedby,
-                    updatedEmail: data.updatedemail,
-                    imageURL: imgURL
-                }
-
-                axios.patch(`http://localhost:5000/product/${product._id}`, updatedProduct)
-                    .then(response => {
-                        if (response.data.modifiedCount) {
-                            reset();
-                            navigate(`/product/${product._id}`);
-                            Swal.fire({
-                                icon: "success",
-                                title: "Product successfully updated!",
-                                showConfirmButton: false,
-                                timer: 1500,
-                            });
-                        }
-                    })
+            fetch(img_hosting_url, {
+                method: 'POST',
+                body: formData
             })
+                .then(res => res.json())
+                .then(imgResponse => {
+                    const imgURL = imgResponse.data.display_url;
+
+                    const updatedProduct = {
+                        name: data.name,
+                        subtitle: data.subtitle,
+                        forSearch: data.name + " " + data.subtitle,
+                        usage: data.usage,
+                        group: transformGroup(data.group),
+                        category: data.category,
+                        apply: data.apply,
+                        description: data.description,
+                        moComLink: data.motherCompanyLink,
+                        updatedBy: data.updatedby,
+                        updatedEmail: data.updatedemail,
+                        imageURL: imgURL
+                    }
+
+                    axios.patch(`http://localhost:5000/product/${product._id}`, updatedProduct)
+                        .then(response => {
+                            if (response.data.modifiedCount) {
+                                reset();
+                                navigate(`/product/${product._id}`);
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Product successfully updated!",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                            }
+                        })
+                })
+        } else {
+            const updatedProduct = {
+                name: data.name,
+                subtitle: data.subtitle,
+                forSearch: data.name + " " + data.subtitle,
+                usage: data.usage,
+                group: transformGroup(data.group),
+                category: data.category,
+                apply: data.apply,
+                description: data.description,
+                moComLink: data.motherCompanyLink,
+                updatedBy: data.updatedby,
+                updatedEmail: data.updatedemail,
+            }
+
+            axios.patch(`http://localhost:5000/product/${product._id}`, updatedProduct)
+                .then(response => {
+                    if (response.data.modifiedCount) {
+                        reset();
+                        navigate(`/product/${product._id}`);
+                        Swal.fire({
+                            icon: "success",
+                            title: "Product successfully updated!",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                })
+        }
     }
 
     const handleEditClick = (event) => {

@@ -2,33 +2,87 @@ import { useForm } from "react-hook-form";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import useCategories from "../../../Hooks/useCategories";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { RxCross1 } from "react-icons/rx";
 import { FaEdit } from "react-icons/fa";
 import Loader from "../../../Components/Loader/Loader";
+import axios from "axios";
+import useHosting from "../../../Hooks/useHosting";
+import Swal from "sweetalert2";
 
 const UpdateCategory = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [categories, loading] = useCategories();
     const [editImage, setEditImage] = useState(false);
 
     const { id } = useParams();
+    const img_hosting_url = useHosting();
+    const navigate = useNavigate();
+
     const category = categories.find(category => category._id == id);
 
     const transformCategory = (name) => {
         return name.toLowerCase().replace(/\s+/g, '-');
     };
 
-    const onSubmit = data => {
-        const newCategory = {
-            name: data.name,
-            category: transformCategory(data.name),
-            updatedby: data.updatedby,
-            updatedEmail: data.updatedemail,
-            imageURL: data.imageFile
+    const handleUpdateCategory = data => {
+        if (editImage === true) {
+            const formData = new FormData();
+            formData.append("image", data.image[0]);
+
+            fetch(img_hosting_url, {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(imgResponse => {
+                    const imgURL = imgResponse.data.display_url;
+
+                    const updatedCategory = {
+                        name: data.name,
+                        category: transformCategory(data.name),
+                        updatedBy: data.updatedby,
+                        updatedEmail: data.updatedemail,
+                        imageURL: imgURL
+                    }
+
+                    axios.patch(`http://localhost:5000/category/${category._id}`, updatedCategory)
+                        .then(response => {
+                            if (response.data.modifiedCount) {
+                                reset();
+                                navigate('/categories-list');
+                                Swal.fire({
+                                    icon: "success",
+                                    title: "Category successfully updated!",
+                                    showConfirmButton: false,
+                                    timer: 1500,
+                                });
+                            }
+                        })
+                })
+        } else {
+            const updatedCategory = {
+                name: data.name,
+                category: transformCategory(data.name),
+                updatedBy: data.updatedby,
+                updatedEmail: data.updatedemail
+            }
+
+            axios.patch(`http://localhost:5000/category/${category._id}`, updatedCategory)
+                .then(response => {
+                    if (response.data.modifiedCount) {
+                        reset();
+                        navigate('/categories-list');
+                        Swal.fire({
+                            icon: "success",
+                            title: "Category successfully updated!",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
+                })
         }
-        console.log(newCategory);
     }
 
     const handleEditClick = (event) => {
@@ -54,7 +108,7 @@ const UpdateCategory = () => {
                         </>
                         :
                         <>
-                            <form onSubmit={handleSubmit(onSubmit)} className="p-6 pt-0">
+                            <form onSubmit={handleSubmit(handleUpdateCategory)} className="p-6 pt-0">
                                 <div className="flex flex-col mb-2">
                                     <label className="text-[#6E719A] mb-1 text-sm">
                                         Name <span className="text-red-500">*</span>
@@ -78,7 +132,7 @@ const UpdateCategory = () => {
                                                 <div className="flex items-center">
                                                     <input
                                                         type="file"
-                                                        {...register("imageFile", { required: "Image file is required" })}
+                                                        {...register("image", { required: "Image file is required" })}
                                                         className="h-10 file-input file-input-bordered border-gray-500 w-full rounded-none text-sm cursor-pointer"
                                                     />
                                                     <button
@@ -87,7 +141,7 @@ const UpdateCategory = () => {
                                                         <RxCross1 />
                                                     </button>
                                                 </div>
-                                                {errors.imageFile && <p className="text-red-500 text-sm">{errors.imageFile.message}</p>}
+                                                {errors.image && <p className="text-red-500 text-sm">{errors.image.message}</p>}
                                             </div>
                                         </>
                                         :
@@ -99,7 +153,7 @@ const UpdateCategory = () => {
                                                 <div className="flex items-center">
                                                     <input
                                                         defaultValue={category.imageURL}
-                                                        {...register("imageFile")}
+                                                        {...register("image")}
                                                         placeholder="Enter Image URL"
                                                         className="border-gray-500 h-10 bg-white border p-2 text-sm flex-1 cursor-not-allowed"
                                                         readOnly
@@ -123,9 +177,11 @@ const UpdateCategory = () => {
                                             Name <span className="text-red-500">*</span>
                                         </label>
                                         <input
+                                            defaultValue={"Navantis Pharma Limited"}
                                             {...register("updatedby", { required: "Updated by is required" })}
                                             placeholder="Enter name of person updating"
-                                            className="border-gray-500 bg-white border p-2 text-sm"
+                                            className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
+                                            readOnly
                                         />
                                         {errors.updatedby && <p className="text-red-500 text-sm">{errors.updatedby.message}</p>}
                                     </div>
@@ -134,6 +190,7 @@ const UpdateCategory = () => {
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
+                                            defaultValue={"info@navantispharma.com"}
                                             {...register("updatedemail", {
                                                 required: "Email is required",
                                                 pattern: {
@@ -142,7 +199,8 @@ const UpdateCategory = () => {
                                                 }
                                             })}
                                             placeholder="Enter email"
-                                            className="border-gray-500 bg-white border p-2 text-sm"
+                                            className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
+                                            readOnly
                                         />
                                         {errors.updatedemail && <p className="text-red-500 text-sm">{errors.updatedemail.message}</p>}
                                     </div>

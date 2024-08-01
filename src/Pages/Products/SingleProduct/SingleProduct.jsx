@@ -18,7 +18,17 @@ const SingleProduct = () => {
     };
 
     let formattedDate;
-    if (product) {
+    if (product.updatedBy) {
+        formattedDate = new Date(product.updatedAt).toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true, // This will format the time in 12-hour clock with AM/PM
+        });
+    } else {
         formattedDate = new Date(product.createdAt).toLocaleString('en-US', {
             year: 'numeric',
             month: 'long',
