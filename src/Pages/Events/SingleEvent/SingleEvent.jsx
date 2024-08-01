@@ -106,6 +106,92 @@ const SingleEvent = () => {
                                     </div>
                                 </div>
                             </div>
+                            <div className="grid grid-cols md:grid-cols-2 gap-4 px-6">
+                                {
+                                    event.addedBy
+                                    &&
+                                    <div className="mt-10 w-full">
+                                        <h2 className="pb-1 text-gray-600 font-bold">Added by</h2>
+                                        <hr className='text-center w-[30%] border border-gray-500 mb-1' />
+                                        <div className="md:ml-5 overflow-x-auto">
+                                            <table className="table">
+                                                <tbody>
+                                                    {/* head */}
+                                                    <tr className="hover">
+                                                        <th>Name</th>
+                                                        <td>{event.addedBy}</td>
+                                                    </tr>
+
+                                                    {/* row 1 */}
+                                                    <tr className="hover">
+                                                        <th>Email</th>
+                                                        <td>{event.addedEmail}</td>
+                                                    </tr>
+                                                    {/* row 2 */}
+                                                    <tr className="hover">
+                                                        <th>Date</th>
+                                                        <td>
+                                                            {
+                                                                new Date(event.createdAt).toLocaleString('en-US', {
+                                                                    year: 'numeric',
+                                                                    month: 'long',
+                                                                    day: 'numeric',
+                                                                    hour: 'numeric',
+                                                                    minute: 'numeric',
+                                                                    second: 'numeric',
+                                                                    hour12: true, // This will format the time in 12-hour clock with AM/PM
+                                                                })
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                                {
+                                    event.updatedBy
+                                    &&
+                                    <div className="mt-10 w-full">
+                                        <h2 className="pb-1 text-gray-600 font-bold">Last updated by</h2>
+                                        <hr className='text-center w-[30%] border border-gray-500 mb-1' />
+                                        <div className="md:ml-5 overflow-x-auto">
+                                            <table className="table">
+                                                <tbody>
+                                                    {/* head */}
+                                                    <tr className="hover">
+                                                        <th>Name</th>
+                                                        <td>{event.updatedBy}</td>
+                                                    </tr>
+
+                                                    {/* row 1 */}
+                                                    <tr className="hover">
+                                                        <th>Email</th>
+                                                        <td>{event.updatedEmail}</td>
+                                                    </tr>
+                                                    {/* row 2 */}
+                                                    <tr className="hover">
+                                                        <th>Date</th>
+                                                        <td>
+                                                            {
+                                                                new Date(event.updatedAt).toLocaleString('en-US', {
+                                                                    year: 'numeric',
+                                                                    month: 'long',
+                                                                    day: 'numeric',
+                                                                    hour: 'numeric',
+                                                                    minute: 'numeric',
+                                                                    second: 'numeric',
+                                                                    hour12: true, // This will format the time in 12-hour clock with AM/PM
+                                                                })
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </>
                 }
             </div>

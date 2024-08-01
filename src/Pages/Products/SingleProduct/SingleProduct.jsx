@@ -17,29 +17,6 @@ const SingleProduct = () => {
             .replace(/\b\w/g, char => char.toUpperCase());
     };
 
-    let formattedDate;
-    if (product.updatedBy) {
-        formattedDate = new Date(product.updatedAt).toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-            hour12: true, // This will format the time in 12-hour clock with AM/PM
-        });
-    } else {
-        formattedDate = new Date(product.createdAt).toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-            hour12: true, // This will format the time in 12-hour clock with AM/PM
-        });
-    }
-
     const handleDelete = () => {
         Swal.fire({
             title: "Are you sure?",
@@ -193,7 +170,19 @@ const SingleProduct = () => {
                                                         {/* row 2 */}
                                                         <tr className="hover">
                                                             <th>Date</th>
-                                                            <td>{formattedDate}</td>
+                                                            <td>
+                                                                {
+                                                                    new Date(product.createdAt).toLocaleString('en-US', {
+                                                                        year: 'numeric',
+                                                                        month: 'long',
+                                                                        day: 'numeric',
+                                                                        hour: 'numeric',
+                                                                        minute: 'numeric',
+                                                                        second: 'numeric',
+                                                                        hour12: true, // This will format the time in 12-hour clock with AM/PM
+                                                                    })
+                                                                }
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -223,7 +212,19 @@ const SingleProduct = () => {
                                                         {/* row 2 */}
                                                         <tr className="hover">
                                                             <th>Date</th>
-                                                            <td>{formattedDate}</td>
+                                                            <td>
+                                                                {
+                                                                    new Date(product.updatedAt).toLocaleString('en-US', {
+                                                                        year: 'numeric',
+                                                                        month: 'long',
+                                                                        day: 'numeric',
+                                                                        hour: 'numeric',
+                                                                        minute: 'numeric',
+                                                                        second: 'numeric',
+                                                                        hour12: true, // This will format the time in 12-hour clock with AM/PM
+                                                                    })
+                                                                }
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
