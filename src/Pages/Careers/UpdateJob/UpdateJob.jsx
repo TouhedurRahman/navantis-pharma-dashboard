@@ -1,18 +1,21 @@
 import { useForm } from "react-hook-form";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import useCareers from "../../../Hooks/useCareers";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const UpdateJob = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [careers, loading] = useCareers();
     const { id } = useParams();
+    const navigate = useNavigate();
     const career = careers.find(career => career._id == id);
 
-    const onSubmit = data => {
-        const newCircular = {
+    const handleUpdateCareer = data => {
+        const updatedCareer = {
             designation: data.designation,
             department: data.department,
             outline: data.outline,
@@ -23,7 +26,20 @@ const UpdateJob = () => {
             updatedBy: data.updatedby,
             updatedEmail: data.updatedemail
         }
-        console.log(newCircular);
+
+        axios.patch(`http://localhost:5000/career/${career._id}`, updatedCareer)
+            .then(response => {
+                if (response.data.modifiedCount) {
+                    reset();
+                    navigate(`/career/${career._id}`);
+                    Swal.fire({
+                        icon: "success",
+                        title: "Career successfully updated!",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                }
+            })
     }
 
     return (
@@ -44,7 +60,7 @@ const UpdateJob = () => {
                         </>
                         :
                         <>
-                            <form onSubmit={handleSubmit(onSubmit)} className="p-6 pt-0">
+                            <form onSubmit={handleSubmit(handleUpdateCareer)} className="p-6 pt-0">
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2">
                                     <div className="flex flex-col">
                                         <label className="text-[#6E719A] mb-1 text-sm">
