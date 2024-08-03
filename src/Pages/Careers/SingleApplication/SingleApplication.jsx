@@ -19,6 +19,10 @@ const SingleApplication = () => {
             year: 'numeric',
             month: 'long',
             day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true, // This will format the time in 12-hour clock with AM/PM
         });
     }
 
@@ -85,7 +89,7 @@ const SingleApplication = () => {
                             </div>
                             <div className="px-6 flex flex-col justify-center items-start">
                                 <div className="mt-2 w-full flex justify-center items-center">
-                                    <h2 className="pb-1 text-gray-600 font-bold">Applied date: </h2>
+                                    <h2 className="pb-1 text-gray-600 font-bold">Applied date & time: </h2>
                                     <h2 className="text-gray-600 ml-1">{formattedDate}</h2>
                                 </div>
                                 <div className="overflow-x-auto w-full">
