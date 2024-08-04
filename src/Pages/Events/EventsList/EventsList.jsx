@@ -121,11 +121,11 @@ const EventsList = () => {
                                 {/* Pagination */}
                                 <div className="flex justify-center items-center mb-10">
                                     <div
-                                        className={`mx-1 px-3 py-1 rounded-lg flex justify-center items-center ${currentPage === 1 ? 'cursor-not-allowed' : ''}`}
-                                        onClick={() => changePage(currentPage - 1)}
-                                        disabled={currentPage === 1}
+                                        className={`mx-1 px-3 py-1 rounded-lg flex justify-center items-center ${currentPage === 1 ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                                        onClick={currentPage !== 1 ? () => changePage(currentPage - 1) : null}
+                                        aria-disabled={currentPage === 1}
                                     >
-                                        <span className='flex justify-between items-center text-black cursor-pointer'>
+                                        <span className='flex justify-between items-center text-black'>
                                             <BsArrowLeftCircleFill className='h-6 w-6' />
                                         </span>
                                     </div>
@@ -134,7 +134,7 @@ const EventsList = () => {
                                             Array.from({ length: totalPages }, (_, index) => (
                                                 <button
                                                     key={index}
-                                                    className={`mx-1 flex justify-center items-center w-6 h-6 border border-black rounded-full ${currentPage === index + 1 ? 'bg-[#3B82F6] text-white font-mono font-extrabold italic border-2 border-green-900' : ''
+                                                    className={`mx-1 flex justify-center items-center w-6 h-6 border border-black rounded-full ${currentPage === index + 1 ? 'bg-[#3B82F6] text-white font-mono font-extrabold border-2 border-green-900' : ''
                                                         }`}
                                                     onClick={() => changePage(index + 1)}
                                                 >
@@ -144,11 +144,11 @@ const EventsList = () => {
                                         }
                                     </div>
                                     <div
-                                        className={`mx-1 px-3 py-1 rounded-lg flex justify-center items-center ${currentPage === totalPages ? 'cursor-not-allowed' : ''}`}
-                                        onClick={() => changePage(currentPage + 1)}
-                                        disabled={currentPage === totalPages}
+                                        className={`mx-1 px-3 py-1 rounded-[4px] flex justify-center items-center ${currentPage === totalPages ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}`}
+                                        onClick={currentPage !== totalPages ? () => changePage(currentPage + 1) : null}
+                                        aria-disabled={currentPage === totalPages}
                                     >
-                                        <span className='flex justify-between items-center text-black cursor-pointer'>
+                                        <span className='flex justify-between items-center text-black'>
                                             <BsArrowRightCircleFill className='h-6 w-6' />
                                         </span>
                                     </div>
