@@ -22,6 +22,7 @@ import ApplicationsList from "../Pages/Careers/ApplicationsList/ApplicationsList
 import SingleApplication from "../Pages/Careers/SingleApplication/SingleApplication";
 import QueriesList from "../Pages/Quries/QuriesList/QuriesList";
 import SingleQuery from "../Pages/Quries/SingleQuery/SingleQuery";
+import Login from "../Pages/Login/Login";
 
 const router = createBrowserRouter([
     {
@@ -110,6 +111,10 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: '/login',
+        element: <Login />
+    }
 ]);
 
 export default router;
