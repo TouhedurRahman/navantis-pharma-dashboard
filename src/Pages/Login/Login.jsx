@@ -46,7 +46,7 @@ const Login = () => {
     }
 
     return (
-        <div className='pt-20 justify-center flex items-center'>
+        <div className='py-10 justify-center flex items-center'>
             <div className="hero-content mt-10 mx-3 shadow-2xl shadow-orange-100 border-2 border-[#3B82F6] rounded-lg flex-col lg:flex-row">
                 {/*
                 <div className="flex justify-center items-center">
@@ -60,7 +60,7 @@ const Login = () => {
                     <form onSubmit={handleSubmit(handleLogin)}>
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text font-bold italic">Email</span>
+                                <span className="label-text font-bold">Email</span>
                             </label>
                             <input
                                 type="email"
@@ -77,7 +77,7 @@ const Login = () => {
 
                         <div className="form-control w-full max-w-xs">
                             <label className="label">
-                                <span className="label-text font-bold italic">Password</span>
+                                <span className="label-text font-bold">Password</span>
                             </label>
                             <div className='relative'>
                                 <div className='flex'>
@@ -151,7 +151,7 @@ const Login = () => {
                     </form>
 
                     <p className='w-full max-w-xs pt-3 text-center'>
-                        <span className='font-bold'>New Here?</span> <Link className='text-blue-600 font-bold hover:link' to='/register'>Create an Account</Link>
+                        <span className='font-bold'>New Here?</span> <Link className='text-blue-600 font-bold hover:link' to='/registration'>Create an Account</Link>
                     </p>
                 </div>
             </div>

@@ -23,6 +23,7 @@ import SingleApplication from "../Pages/Careers/SingleApplication/SingleApplicat
 import QueriesList from "../Pages/Quries/QuriesList/QuriesList";
 import SingleQuery from "../Pages/Quries/SingleQuery/SingleQuery";
 import Login from "../Pages/Login/Login";
+import Registration from "../Pages/Registration/Registration";
 
 const router = createBrowserRouter([
     {
@@ -114,6 +115,10 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login />
+    },
+    {
+        path: '/registration',
+        element: <Registration />
     }
 ]);
 

@@ -2,7 +2,7 @@ import Login from "../Pages/Login/Login";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const Main = () => {
-    const user = false;
+    const user = true;
     return (
         <div className="font-nunito">
             {
