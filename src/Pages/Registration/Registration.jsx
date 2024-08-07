@@ -153,12 +153,12 @@ const Registration = () => {
                             </label>
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <input type="submit" className='w-full btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-orange-100 hover:border-green-600 mr-10' value='Register' />
+                            <input type="submit" className='w-full btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-[#3B82F6] hover:text-white' value='Register' />
                         </div>
                     </form>
 
                     <p className='w-full max-w-xs pt-3 text-center'>
-                        <span className='font-bold'>Already have an account?</span> <Link className='text-blue-600 font-bold hover:link' to='/login'>Please Login</Link>
+                        <span>Already have an account?</span> <Link className='text-blue-600 hover:link' to='/login'>Please Login</Link>
                     </p>
                 </div>
             </div>
