@@ -3,6 +3,7 @@ import {
     createUserWithEmailAndPassword,
     getAuth,
     onAuthStateChanged,
+    signInWithEmailAndPassword,
     updateProfile,
 } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
@@ -18,6 +19,11 @@ const AuthProvider = ({ children }) => {
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
+    }
+
+    const logIn = (email, password) => {
+        setLoading(true);
+        return signInWithEmailAndPassword(auth, email, password);
     }
 
     useEffect(() => {
@@ -44,6 +50,7 @@ const AuthProvider = ({ children }) => {
         user,
         loading,
         createUser,
+        logIn,
         updateUserProfile
     }
 

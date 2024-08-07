@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FaUserCircle } from "react-icons/fa";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LoadCanvasTemplate, loadCaptchaEnginge, validateCaptcha } from "react-simple-captcha";
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { GrValidate } from "react-icons/gr";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import useAuth from "../../Hooks/useAuth";
+import Swal from 'sweetalert2';
 
 const Login = () => {
+    const { logIn } = useAuth();
+
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +23,10 @@ const Login = () => {
 
     const captchaRef = useRef(null);
     const userEmailRef = useRef(null);
+
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
         loadCaptchaEnginge(5);
@@ -50,9 +58,18 @@ const Login = () => {
 
         const email = data.email;
         const password = data.password;
-        if (email && password) {
-            navigate('/');
-        }
+
+        logIn(email, password)
+            .then(userCredential => {
+                const user = userCredential.user;
+                Swal.fire({
+                    icon: "success",
+                    title: "Login successful!",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(from, { replace: true });
+            })
     }
 
     return (
