@@ -9,8 +9,11 @@ import { FaLayerGroup, FaListUl } from "react-icons/fa";
 import { FiHelpCircle } from "react-icons/fi";
 import { MdWorkOutline } from "react-icons/md";
 import useLogOut from '../../../Hooks/useLogOut';
+import useAuth from '../../../Hooks/useAuth';
 
 const Navbar = () => {
+    const { user } = useAuth();
+
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -196,7 +199,7 @@ const Navbar = () => {
                         <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
                     </button>
                     <div>
-                        <button className="btn btn-ghost text-white">Hi, Touhedur Rahman Khan</button>
+                        <button className="btn btn-ghost text-white">Hi, {user.displayName}</button>
                         <button className="btn btn-ghost text-white" onClick={handleLogOut}> <LuLogOut />Logout</button>
                     </div>
                 </div>

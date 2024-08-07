@@ -70,6 +70,14 @@ const Login = () => {
                 });
                 navigate(from, { replace: true });
             })
+            .catch(error => {
+                // console.error("Log in Error:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Wrong user credentials.',
+                    // text: error.message,
+                });
+            });
     }
 
     return (
