@@ -2,14 +2,38 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { FaUsersCog } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import useAuth from '../../Hooks/useAuth';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const Registration = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { createUser, updateUserProfile } = useAuth();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const [openPassword, setOpenPassword] = useState(false);
     const [openConfirmPassword, setOpenConfirmPassword] = useState(false);
+
+    const navigate = useNavigate();
+
+    const saveUser = (name, email) => {
+        const user = { name, email };
+        const url = "http://localhost:5000/users";
+        axios.post(url, user)
+            .then(response => {
+                if (response.data.insertedId) {
+                    reset();
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'User created successful.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    navigate('/');
+                }
+            })
+    }
 
     const handleRegister = async (data) => {
         const userName = data.name;
@@ -19,7 +43,16 @@ const Registration = () => {
 
         try {
             if (userPass === userConPass) {
-                console.log("Registration successfull");
+                const userCredential = await createUser(userEmail, userPass);
+                const registeredUser = userCredential.user;
+
+                const userInfo = {
+                    displayName: userName
+                };
+
+                await updateUserProfile(userInfo);
+
+                saveUser(userName, userEmail);
             } else {
                 console.log("Password & confirm password must be the same.");
             }
