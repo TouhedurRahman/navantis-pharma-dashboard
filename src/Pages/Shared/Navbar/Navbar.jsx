@@ -8,6 +8,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import { FaLayerGroup, FaListUl } from "react-icons/fa";
 import { FiHelpCircle } from "react-icons/fi";
 import { MdWorkOutline } from "react-icons/md";
+import useLogOut from '../../../Hooks/useLogOut';
 
 const Navbar = () => {
     const [isSidebarOpen, setSidebarOpen] = useState(true);
@@ -15,6 +16,8 @@ const Navbar = () => {
 
     const today = new Date();
     const year = today.getFullYear();
+
+    const handleLogOut = useLogOut();
 
     const toggleSidebar = () => {
         setSidebarOpen(!isSidebarOpen);
@@ -194,7 +197,7 @@ const Navbar = () => {
                     </button>
                     <div>
                         <button className="btn btn-ghost text-white">Hi, Touhedur Rahman Khan</button>
-                        <button className="btn btn-ghost text-white"> <LuLogOut />Logout</button>
+                        <button className="btn btn-ghost text-white" onClick={handleLogOut}> <LuLogOut />Logout</button>
                     </div>
                 </div>
 

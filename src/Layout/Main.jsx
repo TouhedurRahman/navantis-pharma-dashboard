@@ -1,8 +1,10 @@
+import useAuth from "../Hooks/useAuth";
 import Login from "../Pages/Login/Login";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
 
 const Main = () => {
-    const user = true;
+    const { user } = useAuth();
+
     return (
         <div className="font-nunito">
             {
