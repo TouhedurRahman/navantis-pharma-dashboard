@@ -12,6 +12,7 @@ const Login = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [loginDisabled, setLoginDisabled] = useState(true);
     const [enterUserEmail, setEnterUserEmail] = useState('');
+    const [isCaptchaValid, setIsCaptchaValid] = useState(false); // New state to track CAPTCHA validation
 
     const navigate = useNavigate();
 
@@ -27,8 +28,10 @@ const Login = () => {
 
         if (validateCaptcha(captchaValue)) {
             setLoginDisabled(false);
+            setIsCaptchaValid(true); // Set CAPTCHA as valid
         } else {
             setLoginDisabled(true);
+            setIsCaptchaValid(false); // Set CAPTCHA as invalid
         }
     }
 
@@ -38,6 +41,12 @@ const Login = () => {
     }
 
     const handleLogin = (data) => {
+        // Check CAPTCHA validation before login
+        if (!isCaptchaValid) {
+            alert('Please validate the CAPTCHA before logging in.');
+            return;
+        }
+
         const email = data.email;
         const password = data.password;
         if (email && password) {
@@ -48,13 +57,6 @@ const Login = () => {
     return (
         <div className='py-10 justify-center flex items-center'>
             <div className="hero-content mt-10 mx-3 shadow-2xl shadow-orange-100 border-2 border-[#3B82F6] rounded-lg flex-col lg:flex-row">
-                {/*
-                <div className="flex justify-center items-center">
-                    <div className="w-full rounded-xl">
-                        <img src="src/assets/images/Login/login-picture.jpg" />
-                    </div>
-                </div>
-                */}
                 <div className="card shrink-0 w-full max-w-sm p-5">
                     <h2 className='text-2xl flex justify-center items-center font-bold'><FaUserCircle className='mr-2 text-[#3B82F6]' /> Login</h2>
                     <form onSubmit={handleSubmit(handleLogin)}>
@@ -130,7 +132,8 @@ const Login = () => {
                                         required
                                     />
                                     <button
-                                        onClick={handleValidateCaptcha}
+                                        type="button"
+                                        onClick={handleValidateCaptcha} // Change button type to "button" to prevent form submission
                                         className='w-[40%] btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-green-50 hover:border-green-600'
                                     >Validate <GrValidate size={24} className='text-green-600 font-extrabold' /></button>
                                 </div>
@@ -138,7 +141,7 @@ const Login = () => {
 
                             <label className="label mb-5">
                                 <span
-                                    className="label-text-alt text-blue-600 font-bold hover:link"
+                                    className="label-text-alt text-blue-600 hover:link"
                                 // onClick={handleResetPassword}
                                 >
                                     Forget password?
@@ -146,12 +149,12 @@ const Login = () => {
                             </label>
                         </div>
                         <div className="form-control w-full max-w-xs">
-                            <input type="submit" className='w-full btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-orange-100 hover:border-green-600' value='Login' disabled={loginDisabled} />
+                            <input type="submit" className='w-full btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-[#3B82F6] hover:text-white' value='Login' disabled={loginDisabled} />
                         </div>
                     </form>
 
                     <p className='w-full max-w-xs pt-3 text-center'>
-                        <span className='font-bold'>New Here?</span> <Link className='text-blue-600 font-bold hover:link' to='/registration'>Create an Account</Link>
+                        <span>New Here?</span> <Link className='text-blue-600  hover:link' to='/registration'>Create an Account</Link>
                     </p>
                 </div>
             </div>
