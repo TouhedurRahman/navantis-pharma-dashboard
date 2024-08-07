@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { FaUsersCog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Registration = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -160,6 +161,10 @@ const Registration = () => {
                     <p className='w-full max-w-xs pt-3 text-center'>
                         <span>Already have an account?</span> <Link className='text-blue-600 hover:link' to='/login'>Please Login</Link>
                     </p>
+
+                    <div className='w-full max-w-xs'>
+                        <SocialLogin />
+                    </div>
                 </div>
             </div>
         </div>
