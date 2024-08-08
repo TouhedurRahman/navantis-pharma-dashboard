@@ -1,3 +1,4 @@
+import axios from "axios";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEye, FaUserShield } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -29,6 +30,32 @@ const UsersCard = ({ user, idx, refetch }) => {
             }
         });
     };
+
+    const handleDelete = () => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axios.delete(`http://localhost:5000/user/${user._id}`)
+                    .then(response => {
+                        if (response.data.deletedCount > 0) {
+                            refetch();
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "User has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
+    }
 
     return (
         <tr>
@@ -92,7 +119,7 @@ const UsersCard = ({ user, idx, refetch }) => {
                         </button>
                     </Link>
                     <button
-                        // onClick={() => handleDelete()}
+                        onClick={() => handleDelete()}
                         className="p-2 rounded-[5px] hover:bg-red-100 focus:outline-none"
                     >
                         <FaTrashAlt className="text-red-500" />
