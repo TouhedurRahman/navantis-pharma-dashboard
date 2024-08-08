@@ -1,11 +1,34 @@
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEye, FaUserShield } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const UsersCard = ({ user, idx }) => {
-    const handleMakeAdmin = () => {
-        console.log("Admin");
-    }
+const UsersCard = ({ user, idx, refetch }) => {
+    const handleMakeAdmin = user => {
+        Swal.fire({
+            title: "Are you sure?",
+            // text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Make Admin!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const url = `http://localhost:5000/users/admin/${user._id}`;
+                fetch(url, {
+                    method: 'PATCH'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data);
+                        if (data.modifiedCount) {
+                            refetch();
+                        }
+                    })
+            }
+        });
+    };
 
     return (
         <tr>
