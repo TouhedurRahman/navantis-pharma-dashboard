@@ -2,8 +2,10 @@ import { useForm } from "react-hook-form";
 import PageTitle from "../../../Components/PageTitle/PageTitle";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const AddJob = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const handleAddJob = data => {
@@ -139,7 +141,7 @@ const AddJob = () => {
                                 Name <span className="text-red-500">*</span>
                             </label>
                             <input
-                                defaultValue={"Navantis Pharma Limited"}
+                                defaultValue={user.displayName}
                                 {...register("addedby", { required: "Added by is required" })}
                                 placeholder="Enter name of person adding"
                                 className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
@@ -152,7 +154,7 @@ const AddJob = () => {
                                 Email <span className="text-red-500">*</span>
                             </label>
                             <input
-                                defaultValue={"info@navantispharma.com"}
+                                defaultValue={user.email}
                                 {...register("addedemail", {
                                     required: "Email is required",
                                     pattern: {

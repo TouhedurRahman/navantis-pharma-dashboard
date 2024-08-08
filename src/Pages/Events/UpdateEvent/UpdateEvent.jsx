@@ -9,9 +9,11 @@ import { RxCross1 } from "react-icons/rx";
 import axios from "axios";
 import useHosting from "../../../Hooks/useHosting";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 
 const UpdateEvent = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [events, loading] = useEvents();
@@ -203,7 +205,7 @@ const UpdateEvent = () => {
                                             Name <span className="text-red-500">*</span>
                                         </label>
                                         <input
-                                            defaultValue={"Navantis Pharma Limited"}
+                                            defaultValue={user.displayName}
                                             {...register("updatedby", { required: "Added by is required" })}
                                             placeholder="Enter name of person updating"
                                             className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
@@ -216,7 +218,7 @@ const UpdateEvent = () => {
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
-                                            defaultValue={"info@navantispharma.com"}
+                                            defaultValue={user.email}
                                             {...register("updatedemail", {
                                                 required: "Email is required",
                                                 pattern: {

@@ -9,8 +9,10 @@ import Loader from "../../../Components/Loader/Loader";
 import axios from "axios";
 import useHosting from "../../../Hooks/useHosting";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const UpdateCategory = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [categories, loading] = useCategories();
@@ -177,7 +179,7 @@ const UpdateCategory = () => {
                                             Name <span className="text-red-500">*</span>
                                         </label>
                                         <input
-                                            defaultValue={"Navantis Pharma Limited"}
+                                            defaultValue={user.displayName}
                                             {...register("updatedby", { required: "Updated by is required" })}
                                             placeholder="Enter name of person updating"
                                             className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
@@ -190,7 +192,7 @@ const UpdateCategory = () => {
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
-                                            defaultValue={"info@navantispharma.com"}
+                                            defaultValue={user.email}
                                             {...register("updatedemail", {
                                                 required: "Email is required",
                                                 pattern: {

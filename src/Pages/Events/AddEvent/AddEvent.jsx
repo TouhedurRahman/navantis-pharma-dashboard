@@ -3,8 +3,10 @@ import PageTitle from "../../../Components/PageTitle/PageTitle";
 import useHosting from "../../../Hooks/useHosting";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const AddEvent = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const img_hosting_url = useHosting();
 
@@ -112,7 +114,7 @@ const AddEvent = () => {
                                 Name <span className="text-red-500">*</span>
                             </label>
                             <input
-                                defaultValue={"Navantis Pharma Limited"}
+                                defaultValue={user.displayName}
                                 {...register("addedby", { required: "Added by is required" })}
                                 placeholder="Enter name of person adding"
                                 className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
@@ -125,7 +127,7 @@ const AddEvent = () => {
                                 Email <span className="text-red-500">*</span>
                             </label>
                             <input
-                                defaultValue={"info@navantispharma.com"}
+                                defaultValue={user.email}
                                 {...register("addedemail", {
                                     required: "Email is required",
                                     pattern: {

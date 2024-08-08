@@ -4,8 +4,10 @@ import useOnlyCategories from "../../../Hooks/useOnlyCategories";
 import useHosting from "../../../Hooks/useHosting";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const AddProducts = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [onlyCategories] = useOnlyCategories();
     const img_hosting_url = useHosting();
@@ -200,7 +202,7 @@ const AddProducts = () => {
                                 Name <span className="text-red-500">*</span>
                             </label>
                             <input
-                                defaultValue={"Navantis Pharma Limited"}
+                                defaultValue={user.displayName}
                                 {...register("addedby", { required: "Added by is required" })}
                                 placeholder="Enter name of person adding"
                                 className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
@@ -213,7 +215,7 @@ const AddProducts = () => {
                                 Email <span className="text-red-500">*</span>
                             </label>
                             <input
-                                defaultValue={"info@navantispharma.com"}
+                                defaultValue={user.email}
                                 {...register("addedemail", {
                                     required: "Email is required",
                                     pattern: {

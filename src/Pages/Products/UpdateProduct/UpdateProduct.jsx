@@ -10,8 +10,10 @@ import Loader from "../../../Components/Loader/Loader";
 import axios from "axios";
 import useHosting from "../../../Hooks/useHosting";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const UpdateProduct = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [products, loading] = useProducts();
@@ -311,7 +313,7 @@ const UpdateProduct = () => {
                                             Name <span className="text-red-500">*</span>
                                         </label>
                                         <input
-                                            defaultValue={"Navantis Pharma Limited"}
+                                            defaultValue={user.displayName}
                                             {...register("updatedby", { required: "Added by is required" })}
                                             placeholder="Enter name of person updating"
                                             className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
@@ -324,7 +326,7 @@ const UpdateProduct = () => {
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
-                                            defaultValue={"info@navantispharma.com"}
+                                            defaultValue={user.email}
                                             {...register("updatedemail", {
                                                 required: "Email is required",
                                                 pattern: {

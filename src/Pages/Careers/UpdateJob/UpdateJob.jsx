@@ -5,8 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import Loader from "../../../Components/Loader/Loader";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useAuth from "../../../Hooks/useAuth";
 
 const UpdateJob = () => {
+    const { user } = useAuth();
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     const [careers, loading] = useCareers();
@@ -163,9 +165,11 @@ const UpdateJob = () => {
                                             Name <span className="text-red-500">*</span>
                                         </label>
                                         <input
+                                            defaultValue={user.displayName}
                                             {...register("updatedby", { required: "Added by is required" })}
                                             placeholder="Enter name of person updating"
-                                            className="border-gray-500 bg-white border p-2 text-sm"
+                                            className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
+                                            readOnly
                                         />
                                         {errors.updatedby && <p className="text-red-500 text-sm">{errors.updatedby.message}</p>}
                                     </div>
@@ -174,6 +178,7 @@ const UpdateJob = () => {
                                             Email <span className="text-red-500">*</span>
                                         </label>
                                         <input
+                                            defaultValue={user.email}
                                             {...register("updatedemail", {
                                                 required: "Email is required",
                                                 pattern: {
@@ -182,7 +187,8 @@ const UpdateJob = () => {
                                                 }
                                             })}
                                             placeholder="Enter email"
-                                            className="border-gray-500 bg-white border p-2 text-sm"
+                                            className="border-gray-500 bg-white border p-2 text-sm cursor-not-allowed"
+                                            readOnly
                                         />
                                         {errors.updatedemail && <p className="text-red-500 text-sm">{errors.updatedemail.message}</p>}
                                     </div>
