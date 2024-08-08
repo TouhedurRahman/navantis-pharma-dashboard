@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleRight, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { Link, Outlet } from 'react-router-dom';
-import { LuLogOut } from "react-icons/lu";
 import { MdDashboard, MdEventNote, MdOutlineWorkHistory } from "react-icons/md";
+import { FaCircleUser, FaUsers } from "react-icons/fa6";
+import { RiLogoutCircleRFill } from "react-icons/ri";
 import { IoIosAddCircle } from "react-icons/io";
 import { FaLayerGroup, FaListUl } from "react-icons/fa";
 import { FiHelpCircle } from "react-icons/fi";
@@ -14,7 +15,8 @@ import useSingleUser from '../../../Hooks/useSingleUser';
 
 const Navbar = () => {
     const { user } = useAuth();
-    const { singleUser } = useSingleUser();
+    const [singleUser, loadingSingleUser] = useSingleUser();
+    console.log(singleUser);
 
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -200,9 +202,46 @@ const Navbar = () => {
                     <button onClick={toggleMobileMenu} className="text-white md:hidden">
                         <FontAwesomeIcon icon={isMobileMenuOpen ? faTimes : faBars} />
                     </button>
-                    <div>
+                    <div className='flex justify-center items-center'>
                         <button className="btn btn-ghost text-white">Hi, {user.displayName}</button>
-                        <button className="btn btn-ghost text-white" onClick={handleLogOut}> <LuLogOut />Logout</button>
+                        {/***** Login & profile section *****/}
+                        {
+                            user
+                                ?
+                                <div className="dropdown dropdown-bottom dropdown-end my-auto">
+                                    <div tabIndex={0} role="button" className="mt-2">
+                                        <div className="avatar">
+                                            <div
+                                                className="w-8 h-8 rounded-full ring ring-[#3B82F6] ring-offset-white ring-offset-2">
+                                                {
+                                                    loadingSingleUser
+                                                        ?
+                                                        ""
+                                                        :
+                                                        <img
+                                                            src={
+                                                                singleUser.profilePicture
+                                                                    ?
+                                                                    `${singleUser.profilePicture}`
+                                                                    :
+                                                                    "https://i.ibb.co/6r3zmMg/user.jpg"
+                                                            }
+                                                        />
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-[#1F2937] rounded-lg w-52 rounded-t-none shadow-0">
+                                        <li><Link to="my-profile" className='text-white'><FaCircleUser />Profile</Link></li>
+                                        <li><Link to="all-users" className='text-white'><FaUsers />All Users</Link></li>
+                                        <li><Link onClick={handleLogOut} className='text-white'><RiLogoutCircleRFill />Log Out</Link></li>
+                                    </ul>
+                                </div>
+                                :
+                                <div className="my-auto ">
+                                    <Link to="/login" className="btn btn-ghost mx-3 border-b-4 rounded-none border-b-transparent hover:border-b-white hover:bg-transparent">Login</Link>
+                                </div>
+                        }
                     </div>
                 </div>
 
