@@ -8,11 +8,12 @@ import { GrValidate } from "react-icons/gr";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
 import Swal from 'sweetalert2';
+import toast from "react-hot-toast";
 
 const Login = () => {
-    const { logIn } = useAuth();
+    const { logIn, resetPassword } = useAuth();
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const [isOpen, setIsOpen] = useState(false);
     const [loginDisabled, setLoginDisabled] = useState(true);
@@ -78,6 +79,27 @@ const Login = () => {
                     // text: error.message,
                 });
             });
+    }
+
+    const handleResetPassword = () => {
+        if (enterUserEmail) {
+            resetPassword(enterUserEmail)
+                .then(() => {
+                    Swal.fire({
+                        title: "Email Sent!",
+                        text: "Please check your email.",
+                        icon: "success"
+                    });
+                    reset();
+                    userEmailRef.current.value = '';
+                    setEnterUserEmail('');
+                })
+                .then(() => { })
+        }
+        else {
+            toast.error("Error! Please enter your registered email.");
+            userEmailRef.current.value = '';
+        }
     }
 
     return (
@@ -168,7 +190,7 @@ const Login = () => {
                             <label className="label mb-5">
                                 <span
                                     className="label-text-alt text-blue-600 hover:link"
-                                // onClick={handleResetPassword}
+                                    onClick={handleResetPassword}
                                 >
                                     Forget password?
                                 </span>

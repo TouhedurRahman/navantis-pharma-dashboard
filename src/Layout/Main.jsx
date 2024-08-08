@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import useAuth from "../Hooks/useAuth";
 import Login from "../Pages/Login/Login";
 import Navbar from "../Pages/Shared/Navbar/Navbar";
@@ -14,6 +15,7 @@ const Main = () => {
                     :
                     <Login />
             }
+            <Toaster />
         </div>
     );
 };
