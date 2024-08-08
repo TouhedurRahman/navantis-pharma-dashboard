@@ -24,6 +24,8 @@ import QueriesList from "../Pages/Quries/QuriesList/QuriesList";
 import SingleQuery from "../Pages/Quries/SingleQuery/SingleQuery";
 import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
+import AllUsers from "../Pages/AllUsers/AllUsers";
+import MyProfile from "../Pages/MyProfile/MyProfile";
 
 const router = createBrowserRouter([
     {
@@ -109,6 +111,14 @@ const router = createBrowserRouter([
             {
                 path: '/application/:id',
                 element: <SingleApplication />
+            },
+            {
+                path: '/my-profile',
+                element: <MyProfile />
+            },
+            {
+                path: '/all-users',
+                element: <AllUsers />
             }
         ]
     },
