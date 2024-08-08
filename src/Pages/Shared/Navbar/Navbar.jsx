@@ -10,9 +10,11 @@ import { FiHelpCircle } from "react-icons/fi";
 import { MdWorkOutline } from "react-icons/md";
 import useLogOut from '../../../Hooks/useLogOut';
 import useAuth from '../../../Hooks/useAuth';
+import useSingleUser from '../../../Hooks/useSingleUser';
 
 const Navbar = () => {
     const { user } = useAuth();
+    const { singleUser } = useSingleUser();
 
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
