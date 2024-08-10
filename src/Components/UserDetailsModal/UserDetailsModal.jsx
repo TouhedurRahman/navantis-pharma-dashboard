@@ -7,7 +7,7 @@ const UserDetailsModal = ({ user, onClose }) => {
             <div className="bg-white rounded-lg w-96 p-4 relative">
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+                    className="absolute top-5 right-5 text-red-500  rounded-full px-2 hover:bg-red-500 hover:text-white"
                 >
                     &times;
                 </button>
@@ -26,10 +26,11 @@ const UserDetailsModal = ({ user, onClose }) => {
                     </div>
                 </div>
                 <div className="text-center">
-                    <h3 className="text-xl font-bold mb-2">{user.name}</h3>
-                    <p className="text-sm text-gray-500">{user.email}</p>
-                    <p className="mt-2">Role: {user.role === 'admin' ? 'Admin' : 'User'}</p>
-                    <p className="mt-2">Designation: {user.designation || 'N/A'}</p>
+                    <h3 className="text-xl font-bold">{user.name}</h3>
+                    <p className="">{user.designation && user.designation}</p>
+                    <p className="text-sm text-gray-500 mt-3">✉ {user.email}</p>
+                    <p className="text-sm text-gray-500">{user.mobile && `✆ ${user.mobile}`}</p>
+                    <p className="mt-3">{user.role === 'admin' ? 'Admin' : 'Requested for admin approval'}</p>
                     {/* Add more user details here as needed */}
                 </div>
             </div>

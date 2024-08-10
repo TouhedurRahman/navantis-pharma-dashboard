@@ -8,7 +8,6 @@ import { GrValidate } from "react-icons/gr";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import useAuth from "../../Hooks/useAuth";
 import Swal from 'sweetalert2';
-import toast from "react-hot-toast";
 
 const Login = () => {
     const { logIn, resetPassword } = useAuth();
@@ -97,7 +96,13 @@ const Login = () => {
                 .then(() => { })
         }
         else {
-            toast.error("Error! Please enter your registered email.");
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Error! Please enter your registered email.",
+                confirmButtonText: "OK",
+                confirmButtonColor: "#3B82F6"
+            });
             userEmailRef.current.value = '';
         }
     }

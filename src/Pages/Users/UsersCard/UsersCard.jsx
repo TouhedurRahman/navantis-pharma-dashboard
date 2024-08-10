@@ -98,7 +98,7 @@ const UsersCard = ({ user, idx, refetch }) => {
                 <td>
                     <div>
                         <div className="font-bold">{user.name}</div>
-                        <div className="text-sm opacity-80">designation</div>
+                        <div className="text-sm opacity-80">{user.designation}</div>
                     </div>
                 </td>
                 <td>

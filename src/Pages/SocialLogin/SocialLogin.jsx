@@ -35,11 +35,12 @@ const SocialLogin = () => {
                     });
             })
             .catch(error => {
-                // console.error("Google Sign-In Error:", error);
                 Swal.fire({
-                    icon: 'error',
-                    title: 'Google Sign-In failed.',
-                    // text: error.message,
+                    icon: "error",
+                    title: "Oops...",
+                    text: 'Google Sign-In failed.',
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#3B82F6"
                 });
             });
     }
