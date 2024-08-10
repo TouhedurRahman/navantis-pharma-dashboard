@@ -16,7 +16,7 @@ import useSingleUser from '../../../Hooks/useSingleUser';
 const Navbar = () => {
     const { user } = useAuth();
     const [singleUser, loadingSingleUser] = useSingleUser();
-    console.log(singleUser);
+    // console.log(singleUser);
 
     const [isSidebarOpen, setSidebarOpen] = useState(true);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);

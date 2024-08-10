@@ -26,6 +26,7 @@ import Login from "../Pages/Login/Login";
 import Registration from "../Pages/Registration/Registration";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import AllUsers from "../Pages/Users/AllUsers/AllUsers";
+import NonAdmin from "../Pages/NonAdmin/NonAdmin";
 
 const router = createBrowserRouter([
     {
@@ -129,6 +130,10 @@ const router = createBrowserRouter([
     {
         path: '/registration',
         element: <Registration />
+    },
+    {
+        path: '/non-admin',
+        element: <NonAdmin />
     }
 ]);
 
