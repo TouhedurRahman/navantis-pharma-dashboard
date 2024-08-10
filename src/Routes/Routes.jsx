@@ -27,6 +27,7 @@ import Registration from "../Pages/Registration/Registration";
 import MyProfile from "../Pages/MyProfile/MyProfile";
 import AllUsers from "../Pages/Users/AllUsers/AllUsers";
 import NonAdmin from "../Pages/NonAdmin/NonAdmin";
+import NonVerified from "../Pages/NonVerified/NonVerified";
 
 const router = createBrowserRouter([
     {
@@ -134,6 +135,10 @@ const router = createBrowserRouter([
     {
         path: '/non-admin',
         element: <NonAdmin />
+    },
+    {
+        path: '/non-verified',
+        element: <NonVerified />
     }
 ]);
 

@@ -18,7 +18,7 @@ const useLogOut = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
-                navigate("/");
+                navigate("/login");
             })
             .catch(error => console.log(error));
     }

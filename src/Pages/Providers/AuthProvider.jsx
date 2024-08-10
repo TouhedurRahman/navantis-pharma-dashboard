@@ -8,7 +8,8 @@ import {
     signOut,
     updateProfile,
     GoogleAuthProvider,
-    sendPasswordResetEmail
+    sendPasswordResetEmail,
+    sendEmailVerification
 } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
 
@@ -23,9 +24,27 @@ const AuthProvider = ({ children }) => {
     // Google provider
     const googleProvider = new GoogleAuthProvider();
 
-    const createUser = (email, password) => {
+    /* const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
+    } */
+
+    const createUser = async (email, password) => {
+        setLoading(true);
+        try {
+            const result = await createUserWithEmailAndPassword(auth, email, password);
+            // Send verification email
+            sendEmailVerification(result.user)
+                .then(() => {
+                    console.log('Verification email sent to:', email);
+                })
+                .catch(error => {
+                    console.error('Error sending verification email:', error);
+                });
+            return result;
+        } finally {
+            setLoading(false);
+        }
     }
 
     const logIn = (email, password) => {
@@ -42,10 +61,25 @@ const AuthProvider = ({ children }) => {
         return sendPasswordResetEmail(auth, email);
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
             console.log('Current user: ', currentUser?.email);
+            setLoading(false);
+        });
+        return () => {
+            unsubscribe();
+        }
+    }, []); */
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
+            if (currentUser?.emailVerified) {
+                setUser(currentUser);
+                console.log('Current user: ', currentUser.email);
+            } else if (currentUser) {
+                console.log('Email not verified:', currentUser.email);
+            }
             setLoading(false);
         });
         return () => {

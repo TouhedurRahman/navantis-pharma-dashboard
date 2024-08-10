@@ -5,6 +5,7 @@ import NonAdmin from "../Pages/NonAdmin/NonAdmin";
 import useAuth from "../Hooks/useAuth";
 import useSingleUser from "../Hooks/useSingleUser";
 import Loader from "../Components/Loader/Loader";
+import NonVerified from "../Pages/NonVerified/NonVerified";
 
 const Main = () => {
     const { user } = useAuth();
@@ -12,6 +13,10 @@ const Main = () => {
 
     if (!user) {
         return <Login />;
+    }
+
+    if (!user.emailVerified) {
+        return <NonVerified />;
     }
 
     return (
