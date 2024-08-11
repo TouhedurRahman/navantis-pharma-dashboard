@@ -71,16 +71,16 @@ const MyProfile = () => {
             })
     }
 
-    const handleUpadateDesignation = () => {
+    const handleUpdateDesignation = () => {
         const designation = designationRef.current.value;
-        const upadateDesignation = { designation: designation }
-        updateInfo(upadateDesignation);
+        const updateDesignation = { designation: designation }
+        updateInfo(updateDesignation);
     }
 
-    const handleUpadateMobileNo = () => {
+    const handleUpdateMobileNo = () => {
         const mobileNo = mobileNoRef.current.value;
-        const upadateMobileNo = { mobile: mobileNo }
-        updateInfo(upadateMobileNo);
+        const updateMobileNo = { mobile: mobileNo }
+        updateInfo(updateMobileNo);
     }
 
     const handleEmailOnBlur = (e) => {
@@ -198,7 +198,7 @@ const MyProfile = () => {
                                             />
                                             <button
                                                 className='w-[120px] btn mx-auto bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-[#3B82F6] hover:text-white flex'
-                                                onClick={handleUpadateMobileNo}
+                                                onClick={handleUpdateDesignation}
                                             >
                                                 Update <GrStatusGood className="text-xl" />
                                             </button>
@@ -216,7 +216,7 @@ const MyProfile = () => {
                                             />
                                             <button
                                                 className='w-[120px] btn mx-auto bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-[#3B82F6] hover:text-white flex'
-                                                onClick={handleUpadateDesignation}
+                                                onClick={handleUpdateMobileNo}
                                             >
                                                 Update <MdContactPhone className="text-xl" />
                                             </button>

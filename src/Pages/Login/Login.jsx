@@ -75,6 +75,8 @@ const Login = () => {
                 Swal.fire({
                     icon: 'error',
                     title: 'Wrong user credentials.',
+                    confirmButtonText: "OK",
+                    confirmButtonColor: "#3B82F6"
                     // text: error.message,
                 });
             });
