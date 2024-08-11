@@ -87,7 +87,9 @@ const Login = () => {
                     Swal.fire({
                         title: "Email Sent!",
                         text: "Please check your email.",
-                        icon: "success"
+                        icon: "success",
+                        confirmButtonText: "OK",
+                        confirmButtonColor: "#3B82F6"
                     });
                     reset();
                     userEmailRef.current.value = '';
