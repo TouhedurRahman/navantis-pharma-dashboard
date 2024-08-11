@@ -24,11 +24,6 @@ const AuthProvider = ({ children }) => {
     // Google provider
     const googleProvider = new GoogleAuthProvider();
 
-    /* const createUser = (email, password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
-    } */
-
     const createUser = async (email, password) => {
         setLoading(true);
         try {
@@ -76,9 +71,9 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             if (currentUser?.emailVerified) {
                 setUser(currentUser);
-                console.log('Current user: ', currentUser.email);
+                // console.log('Current user: ', currentUser.email);
             } else if (currentUser) {
-                console.log('Email not verified:', currentUser.email);
+                setUser(currentUser);
             }
             setLoading(false);
         });

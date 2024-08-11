@@ -15,6 +15,14 @@ const NonAdmin = () => {
                     <div className="form-control w-full mt-5">
                         <button
                             className='w-full btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-[#3B82F6] hover:text-white'
+                            onClick={() => window.location.reload()}
+                        >
+                            Reload
+                        </button>
+                    </div>
+                    <div className="form-control w-full mt-5">
+                        <button
+                            className='w-full btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-[#3B82F6] hover:text-white'
                             onClick={handleLogout}
                         >
                             Logout
