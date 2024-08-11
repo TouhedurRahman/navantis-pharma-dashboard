@@ -99,8 +99,8 @@ const AllUsers = () => {
                                         <thead>
                                             <tr>
                                                 <th className="text-center">Sl. No.</th>
-                                                <th className="text-center">Name</th>
-                                                <th>Image</th>
+                                                <th className="text-center">Image</th>
+                                                <th>Name</th>
                                                 <th>Email</th>
                                                 <th className="text-center">Role</th>
                                                 <th className="text-center">Action</th>

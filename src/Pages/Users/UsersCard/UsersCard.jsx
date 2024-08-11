@@ -53,7 +53,9 @@ const UsersCard = ({ user, idx, refetch }) => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "User has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })
@@ -98,7 +100,7 @@ const UsersCard = ({ user, idx, refetch }) => {
                 <td>
                     <div>
                         <div className="font-bold">{user.name}</div>
-                        <div className="text-sm opacity-80">{user.designation}</div>
+                        <div className="text-sm opacity-80">{user.designation && user.designation}</div>
                     </div>
                 </td>
                 <td>
