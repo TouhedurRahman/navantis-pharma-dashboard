@@ -21,7 +21,7 @@ const AddJob = () => {
             addedEmail: data.addedemail
         }
 
-        axios.post('http://localhost:5000/circular', newCircular)
+        axios.post('https://api.navantispharma.com/circular', newCircular)
             .then(data => {
                 if (data.data.insertedId) {
                     reset();

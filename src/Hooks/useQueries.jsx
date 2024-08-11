@@ -4,7 +4,7 @@ const useQueries = () => {
     const { data: queries = [], isLoading: loading, refetch } = useQuery({
         queryKey: ['queries'],
         queryFn: async () => {
-            const url = 'http://localhost:5000/queries';
+            const url = 'https://api.navantispharma.com/queries';
             const result = await fetch(url);
             return result.json();
         }

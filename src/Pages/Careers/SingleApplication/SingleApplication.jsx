@@ -37,7 +37,7 @@ const SingleApplication = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/application/${application._id}`)
+                axios.delete(`https://api.navantispharma.com/application/${application._id}`)
                     .then(response => {
                         if (response.data.deletedCount > 0) {
                             refetch();

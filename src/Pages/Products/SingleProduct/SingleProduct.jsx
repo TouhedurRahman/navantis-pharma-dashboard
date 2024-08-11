@@ -28,7 +28,7 @@ const SingleProduct = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/product/${product._id}`)
+                axios.delete(`https://api.navantispharma.com/product/${product._id}`)
                     .then(response => {
                         if (response.data.deletedCount > 0) {
                             refetch();

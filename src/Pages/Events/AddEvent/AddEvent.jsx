@@ -30,7 +30,7 @@ const AddEvent = () => {
                     imageURL: imgURL
                 }
 
-                axios.post('http://localhost:5000/event', newEvent)
+                axios.post('https://api.navantispharma.com/event', newEvent)
                     .then(data => {
                         if (data.data.insertedId) {
                             reset();

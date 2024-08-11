@@ -7,7 +7,7 @@ const useSingleUser = () => {
     const { data: singleUser = {}, isLoading: loadingSingleUser, refetch } = useQuery({
         queryKey: ['singleUser', user?.email],
         queryFn: async () => {
-            const url = `http://localhost:5000/user/${user.email}`;
+            const url = `https://api.navantispharma.com/user/${user.email}`;
             const result = await fetch(url);
             return result.json();
         }

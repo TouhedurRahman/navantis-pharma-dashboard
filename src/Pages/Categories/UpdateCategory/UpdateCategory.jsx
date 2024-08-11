@@ -49,7 +49,7 @@ const UpdateCategory = () => {
                         imageURL: imgURL
                     }
 
-                    axios.patch(`http://localhost:5000/category/${category._id}`, updatedCategory)
+                    axios.patch(`https://api.navantispharma.com/category/${category._id}`, updatedCategory)
                         .then(response => {
                             if (response.data.modifiedCount) {
                                 reset();
@@ -71,7 +71,7 @@ const UpdateCategory = () => {
                 updatedEmail: data.updatedemail
             }
 
-            axios.patch(`http://localhost:5000/category/${category._id}`, updatedCategory)
+            axios.patch(`https://api.navantispharma.com/category/${category._id}`, updatedCategory)
                 .then(response => {
                     if (response.data.modifiedCount) {
                         reset();

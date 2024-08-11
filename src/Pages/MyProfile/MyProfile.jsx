@@ -23,7 +23,7 @@ const MyProfile = () => {
     const userEmailRef = useRef(null);
 
     const updateInfo = (updatedInfo) => {
-        const url = `http://localhost:5000/user/${user.email}`;
+        const url = `https://api.navantispharma.com/user/${user.email}`;
         axios.patch(url, updatedInfo)
             .then((response) => {
                 if (response.data.acknowledged === true) {

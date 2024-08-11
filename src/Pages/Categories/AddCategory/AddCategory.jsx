@@ -33,7 +33,7 @@ const AddCategory = () => {
                     imageURL: imgURL
                 }
 
-                axios.post('http://localhost:5000/category', newCategory)
+                axios.post('https://api.navantispharma.com/category', newCategory)
                     .then(data => {
                         if (data.data.insertedId) {
                             reset();

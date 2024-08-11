@@ -29,7 +29,7 @@ const UpdateJob = () => {
             updatedEmail: data.updatedemail
         }
 
-        axios.patch(`http://localhost:5000/career/${career._id}`, updatedCareer)
+        axios.patch(`https://api.navantispharma.com/career/${career._id}`, updatedCareer)
             .then(response => {
                 if (response.data.modifiedCount) {
                     reset();

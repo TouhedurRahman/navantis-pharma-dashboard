@@ -65,7 +65,7 @@ const UpdateProduct = () => {
                         imageURL: imgURL
                     }
 
-                    axios.patch(`http://localhost:5000/product/${product._id}`, updatedProduct)
+                    axios.patch(`https://api.navantispharma.com/product/${product._id}`, updatedProduct)
                         .then(response => {
                             if (response.data.modifiedCount) {
                                 reset();
@@ -94,7 +94,7 @@ const UpdateProduct = () => {
                 updatedEmail: data.updatedemail,
             }
 
-            axios.patch(`http://localhost:5000/product/${product._id}`, updatedProduct)
+            axios.patch(`https://api.navantispharma.com/product/${product._id}`, updatedProduct)
                 .then(response => {
                     if (response.data.modifiedCount) {
                         reset();

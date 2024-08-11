@@ -19,7 +19,7 @@ const Registration = () => {
 
     const saveUser = (name, email) => {
         const user = { name, email };
-        const url = "http://localhost:5000/users";
+        const url = "https://api.navantispharma.com/users";
         axios.post(url, user)
             .then(response => {
                 if (response.data.insertedId) {

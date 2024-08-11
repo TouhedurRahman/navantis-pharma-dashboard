@@ -43,7 +43,7 @@ const AddProducts = () => {
                     imageURL: imgURL
                 }
 
-                axios.post('http://localhost:5000/products', newProduct)
+                axios.post('https://api.navantispharma.com/products', newProduct)
                     .then(data => {
                         if (data.data.insertedId) {
                             reset();

@@ -24,7 +24,7 @@ const SingleCircular = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/career/${career._id}`)
+                axios.delete(`https://api.navantispharma.com/career/${career._id}`)
                     .then(response => {
                         if (response.data.deletedCount > 0) {
                             refetch();

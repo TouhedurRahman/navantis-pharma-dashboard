@@ -49,7 +49,7 @@ const EventsCard = ({ event, refetch }) => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/event/${event._id}`)
+                axios.delete(`https://api.navantispharma.com/event/${event._id}`)
                     .then(response => {
                         if (response.data.deletedCount > 0) {
                             refetch();
