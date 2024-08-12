@@ -45,7 +45,9 @@ const SingleApplication = () => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Application has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })
@@ -70,10 +72,10 @@ const SingleApplication = () => {
                         </>
                         :
                         <>
-                            <div>
-                                <div className="flex justify-between items-center px-6">
-                                    <div>
-                                        <h1 className="pt-3 font-bold text-2xl">{application.designation}</h1>
+                            <div className="px-6">
+                                <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center">
+                                    <div className="flex flex-col justify-center lg:justify-start items-center lg:items-start">
+                                        <h1 className="pt-3 font-bold text-2xl text-center lg:text-left">{application.designation}</h1>
                                         <h2 className="pb-3 text-gray-600">{application.department}</h2>
                                     </div>
                                     <div className="flex justify-center items-center space-x-2 text-xl">
@@ -88,7 +90,7 @@ const SingleApplication = () => {
                                 <hr className='text-center border border-gray-500 mb-5' />
                             </div>
                             <div className="px-6 flex flex-col justify-center items-start">
-                                <div className="mt-2 w-full flex justify-center items-center">
+                                <div className="mt-2 w-full flex flex-col lg:flex-row justify-center items-center">
                                     <h2 className="pb-1 text-gray-600 font-bold">Applied date & time: </h2>
                                     <h2 className="text-gray-600 ml-1">{formattedDate}</h2>
                                 </div>

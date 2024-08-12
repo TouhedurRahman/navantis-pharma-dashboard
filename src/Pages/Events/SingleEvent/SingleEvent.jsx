@@ -41,7 +41,9 @@ const SingleEvent = () => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Event has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })
@@ -66,10 +68,10 @@ const SingleEvent = () => {
                         </>
                         :
                         <>
-                            <div>
-                                <div className="flex justify-between items-center px-6">
-                                    <div>
-                                        <h1 className="pt-3 font-bold text-2xl">{event.title}</h1>
+                            <div className="px-6">
+                                <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center">
+                                    <div className="flex flex-col justify-center lg:justify-start items-center lg:items-start">
+                                        <h1 className="pt-3 font-bold text-2xl text-center lg:text-left">{event.title}</h1>
                                         <h2 className="pb-3 text-gray-600">{eventDate}</h2>
                                     </div>
                                     <div className="flex justify-center items-center space-x-2 text-xl">
@@ -88,7 +90,7 @@ const SingleEvent = () => {
                                 </div>
                                 <hr className='text-center border border-gray-500 mb-5' />
                             </div>
-                            <div className="px-6 flex justify-between items-start">
+                            <div className="px-6 flex flex-col-reverse lg:flex-row justify-between items-start">
                                 <div className="w-full lg:w-[70%] flex flex-col justify-start items-start">
                                     <div className="mt-10 w-full">
                                         <h2 className="pb-1 text-gray-600 text-center font-bold">Description</h2>

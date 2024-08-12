@@ -32,7 +32,9 @@ const SingleCircular = () => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Career has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })
@@ -57,10 +59,10 @@ const SingleCircular = () => {
                         </>
                         :
                         <>
-                            <div>
-                                <div className="flex justify-between items-center px-6">
-                                    <div>
-                                        <h1 className="pt-3 font-bold text-2xl">{career.designation}</h1>
+                            <div className="px-6">
+                                <div className="flex flex-col lg:flex-row justify-center lg:justify-between items-center">
+                                    <div className="flex flex-col justify-center lg:justify-start items-center lg:items-start">
+                                        <h1 className="pt-3 font-bold text-2xl text-center lg:text-left">{career.designation}</h1>
                                         <h2 className="pb-3 text-gray-600">{career.department}</h2>
                                     </div>
                                     <div className="flex justify-center items-center space-x-2 text-xl">
