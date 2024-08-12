@@ -36,7 +36,9 @@ const SingleProduct = () => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Product has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })
@@ -63,7 +65,7 @@ const SingleProduct = () => {
                         <>
                             <div className="px-6">
                                 <div>
-                                    <div className="flex justify-between items-center">
+                                    <div className="flex flex-col justify-between items-center">
                                         <div>
                                             <h1 className="pt-3 font-bold text-2xl">{product.name}</h1>
                                             <h2 className="pb-3 text-gray-600">{product.subtitle}</h2>
@@ -84,7 +86,7 @@ const SingleProduct = () => {
                                     </div>
                                     <hr className='text-center border border-gray-500 mb-5' />
                                 </div>
-                                <div className="flex justify-between items-start">
+                                <div className="flex flex-col-reverse lg:flex-row justify-between items-start">
                                     <div className="w-full lg:w-[70%] flex flex-col justify-start items-start">
                                         <div className="overflow-x-auto w-full">
                                             <table className="table table-zebra">
