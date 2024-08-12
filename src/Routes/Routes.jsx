@@ -2,7 +2,6 @@ import {
     createBrowserRouter,
 } from "react-router-dom";
 import Main from "../Layout/Main";
-import Home from "../Pages/Home/Home";
 import ProductsList from "../Pages/Products/ProductsList/ProductsList";
 import AddProducts from "../Pages/Products/AddProducts/AddProducts";
 import UpdateProduct from "../Pages/Products/UpdateProduct/UpdateProduct";
@@ -28,6 +27,7 @@ import MyProfile from "../Pages/MyProfile/MyProfile";
 import AllUsers from "../Pages/Users/AllUsers/AllUsers";
 import NonAdmin from "../Pages/NonAdmin/NonAdmin";
 import NonVerified from "../Pages/NonVerified/NonVerified";
+import Home from "../Pages/Home/Home/Home";
 
 const router = createBrowserRouter([
     {
