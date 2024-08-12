@@ -1,4 +1,4 @@
-# Navantis Pharma Dashboard
+# [Navantis Pharma Dashboard](https://dashboard.navantispharma.com/)
 
 Welcome to the Navantis Pharma Dashboard repository. This project provides an admin dashboard for managing the company's products, user inquiries, and other administrative tasks.
 
