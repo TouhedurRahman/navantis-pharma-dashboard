@@ -31,7 +31,7 @@ const CategorizedChart = () => {
             </div>
             <div className="w-full">
                 <div className="w-full flex justify-center items-center overflow-x-auto">
-                    <div className="min-w-[600px] lg:min-w-[1100px] pl-16 lg:pl-0">
+                    <div className="min-w-[600px] lg:min-w-[1100px] pl-28 lg:pl-0">
                         <BarChart
                             width={1100}
                             height={400}
