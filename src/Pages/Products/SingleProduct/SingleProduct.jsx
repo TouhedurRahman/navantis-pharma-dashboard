@@ -84,7 +84,7 @@ const SingleProduct = () => {
                                             </button>
                                         </div>
                                     </div>
-                                    <hr className='text-center border border-gray-500 mb-5' />
+                                    <hr className='text-center border border-gray-500 mb-5 mt-2 lg:mt-0' />
                                 </div>
                                 <div className="flex flex-col-reverse lg:flex-row justify-between items-start">
                                     <div className="w-full lg:w-[70%] flex flex-col justify-start items-start">

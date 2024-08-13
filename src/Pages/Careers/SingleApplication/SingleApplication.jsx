@@ -87,11 +87,11 @@ const SingleApplication = () => {
                                         </button>
                                     </div>
                                 </div>
-                                <hr className='text-center border border-gray-500 mb-5' />
+                                <hr className='text-center border border-gray-500 mb-5 mt-2 lg:mt-0' />
                             </div>
                             <div className="px-6 flex flex-col justify-center items-start">
                                 <div className="mt-2 w-full flex flex-col lg:flex-row justify-center items-center">
-                                    <h2 className="pb-1 text-gray-600 font-bold">Applied date & time: </h2>
+                                    <h2 className="pb-1 text-gray-600 font-bold flex">Applied date & time <span className="hidden lg:block">:</span> </h2>
                                     <h2 className="text-gray-600 ml-1">{formattedDate}</h2>
                                 </div>
                                 <div className="overflow-x-auto w-full">

@@ -353,7 +353,7 @@ const Navbar = () => {
                                     {menu === 'career' && (
                                         <>
                                             <Link
-                                                to='/career-list'
+                                                to='/careers-list'
                                                 className="w-full text-left px-4 text-white flex"
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
