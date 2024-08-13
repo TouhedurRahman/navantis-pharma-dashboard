@@ -83,7 +83,7 @@ const Stats = () => {
     return (
         <div className="stats-container mb-2">
             <div>
-                <h1 className="px-6 py-3 font-bold">Dashboard stats</h1>
+                <h1 className="px-6 py-3 font-bold">Dashboard Stats</h1>
                 <hr className='text-center border border-gray-500 mb-5' />
             </div>
             <div className="stats-grid">

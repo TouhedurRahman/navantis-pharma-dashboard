@@ -47,7 +47,9 @@ const ProductsCard = ({ product, refetch }) => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Product has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })

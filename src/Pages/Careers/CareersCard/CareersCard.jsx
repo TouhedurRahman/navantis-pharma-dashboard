@@ -22,7 +22,9 @@ const CareersCard = ({ career, refetch }) => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Career has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })

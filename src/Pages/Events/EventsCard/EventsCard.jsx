@@ -56,7 +56,9 @@ const EventsCard = ({ event, refetch }) => {
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "Event has been deleted.",
-                                icon: "success"
+                                icon: "success",
+                                confirmButtonText: "OK",
+                                confirmButtonColor: "#3B82F6"
                             });
                         }
                     })
