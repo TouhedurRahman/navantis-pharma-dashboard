@@ -113,7 +113,7 @@ const Login = () => {
 
     return (
         <div className='py-10 justify-center flex items-center'>
-            <div className="hero-content mt-10 mx-3 shadow-2xl shadow-orange-100 border-2 border-[#3B82F6] rounded-lg flex-col lg:flex-row">
+            <div className="hero-content mt-10 mx-3 shadow-2xl shadow-blue-50 border-2 border-[#3B82F6] rounded-lg flex-col lg:flex-row">
                 <div className="card shrink-0 w-full max-w-sm p-5">
                     <h2 className='text-2xl flex justify-center items-center font-bold'><FaUserCircle className='mr-2 text-[#3B82F6]' /> Login</h2>
                     <form onSubmit={handleSubmit(handleLogin)}>
@@ -191,8 +191,10 @@ const Login = () => {
                                     <button
                                         type="button"
                                         onClick={handleValidateCaptcha} // Change button type to "button" to prevent form submission
-                                        className='w-[40%] btn bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-green-50 hover:border-green-600'
-                                    >Validate <GrValidate size={24} className='text-green-600 font-extrabold' /></button>
+                                        className='w-[40%] btn flex justify-center items-center bg-transparent border-2 border-[#3B82F6] text-black font-bold hover:bg-green-200 hover:border-[#3B82F6]'
+                                    >
+                                        Validate<GrValidate />
+                                    </button>
                                 </div>
                             </div>
 

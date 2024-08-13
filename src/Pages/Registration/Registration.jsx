@@ -62,8 +62,8 @@ const Registration = () => {
     }
 
     return (
-        <div className='py-10  justify-center flex items-center'>
-            <div className="hero-content mt-10 mx-3 shadow-2xl shadow-orange-100 border-2 border-[#3B82F6] rounded-lg flex-col lg:flex-row-reverse">
+        <div className='py-10 justify-center flex items-center'>
+            <div className="hero-content mt-10 mx-3 shadow-2xl shadow-blue-50 border-2 border-[#3B82F6] rounded-lg flex-col lg:flex-row-reverse">
                 {/* <div className="flex justify-center items-center">
                     <div className="w-full rounded-xl">
                         <img src="src/assets/images/Registration/registration-picture.jpg" />
@@ -116,7 +116,7 @@ const Registration = () => {
                                             minLength: { value: 6, message: "Password must be 6-8 characters" },
                                         })}
                                         placeholder="●●●●●●●●"
-                                        className="input input-accent w-full max-w-xs   border-2 border-[#3B82F6] focus:outline-none"
+                                        className="input input-accent w-full max-w-xs border-2 border-[#3B82F6] focus:outline-none"
                                     />
                                     <div className="absolute right-2 flex items-center h-full">
                                         {
