@@ -5,9 +5,9 @@ import useCareers from '../../../Hooks/useCareers';
 import useApplications from '../../../Hooks/useApplications';
 import { FaTags, FaBox, FaCalendarAlt, FaBriefcase, FaUser, FaEnvelopeOpenText, FaUserShield, FaUsers } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import './Stats.css';
 import useQueries from '../../../Hooks/useQueries';
 import useAllUsers from '../../../Hooks/useAllUsers';
+import './Stats.css';
 
 const Stats = () => {
     const [categories] = useCategories();
@@ -25,64 +25,63 @@ const Stats = () => {
         {
             _id: 1,
             quantity: categories.length,
-            title: "Categories",
+            title: categories.length > 1 ? "Categories" : "Category",
             link: "/categories-list",
             icon: <FaTags />
         },
         {
             _id: 2,
             quantity: products.length,
-            title: "Products",
+            title: products.length > 1 ? "Products" : "Product",
             link: "/products-list",
             icon: <FaBox />
         },
         {
             _id: 3,
             quantity: events.length,
-            title: "Events",
+            title: events.length > 1 ? "Events" : "Event",
             link: "/events-list",
             icon: <FaCalendarAlt />
         },
         {
             _id: 6,
             quantity: queries.length,
-            title: "Queries",
+            title: queries.length > 1 ? "Queries" : "Query",
             link: "/queries-list",
             icon: <FaEnvelopeOpenText />
         },
         {
             _id: 4,
             quantity: careers.length,
-            title: "Job Circulers",
+            title: careers.length > 1 ? "Job Circulers" : "Job Circuler",
             link: "/careers-list",
             icon: <FaBriefcase />
         },
         {
             _id: 5,
             quantity: applications.length,
-            title: "Job Seekers",
+            title: applications.length > 1 ? "Job Seekers" : "Job Seeker",
             link: "/career-applications",
             icon: <FaUser />
         },
         {
             _id: 7,
             quantity: totalAdmin.length,
-            title: "Admins",
+            title: totalAdmin.length > 1 ? "Admins" : "Admin",
             link: "/all-users",
             icon: <FaUserShield />
         },
         {
             _id: 8,
             quantity: totalNonAdmin.length,
-            title: "Admin Requests",
+            title: totalNonAdmin.length > 1 ? "Admin Requests" : "Admin Request",
             link: "/all-users",
             icon: <FaUsers />
         }
     ];
 
     return (
-        <div className="stats-container">
-            {/* <h2 className="stats-title">Dashboard Stats</h2> */}
+        <div className="stats-container mb-2">
             <div>
                 <h1 className="px-6 py-3 font-bold">Dashboard stats</h1>
                 <hr className='text-center border border-gray-500 mb-5' />
