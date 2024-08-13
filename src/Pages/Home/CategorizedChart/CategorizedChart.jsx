@@ -1,6 +1,5 @@
 import useProducts from "../../../Hooks/useProducts";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
-import './CategorizedChart.css';
 
 const CategorizedChart = () => {
     const [products] = useProducts();
@@ -32,27 +31,21 @@ const CategorizedChart = () => {
             </div>
             <div className="w-full">
                 <div className="w-full flex justify-center items-center overflow-x-auto">
-                    <BarChart
-                        width={1100}
-                        height={400}
-                        data={resultArray}
-                        margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
-                    >
-                        <CartesianGrid
-                            strokeDasharray="3 3"
-                        />
-                        <XAxis
-                            dataKey="category"
-                        />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar
-                            dataKey="numberOfProducts"
-                            fill="#3B82F6"
-                            name="Total Products"
-                        />
-                    </BarChart>
+                    <div className="min-w-[600px] lg:min-w-[1100px] pl-16 lg:pl-0">
+                        <BarChart
+                            width={1100}
+                            height={400}
+                            data={resultArray}
+                            margin={{ top: 20, right: 40, left: 0, bottom: 5 }}
+                        >
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="category" />
+                            <YAxis />
+                            <Tooltip />
+                            <Legend />
+                            <Bar dataKey="numberOfProducts" fill="#3B82F6" name="Total Products" />
+                        </BarChart>
+                    </div>
                 </div>
             </div>
         </div>

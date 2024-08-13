@@ -88,7 +88,7 @@ const Stats = () => {
             </div>
             <div className="stats-grid">
                 {pageContents.map(content => (
-                    <Link to={content.link} key={content._id} className="stat-card">
+                    <Link to={content.link} key={content._id} className="stat-card w-[80%] lg:w-[200px]">
                         <div className="stat-icon">
                             {content.icon}
                         </div>
